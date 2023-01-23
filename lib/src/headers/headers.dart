@@ -97,7 +97,10 @@ extension HeadersInstanceMembers on Headers {
 
   /// Returns an [IteratorWrapper] allowing to go through all key/value pairs
   /// contained in this object.
-  IteratorWrapper<List<String>> entries() => IteratorWrapper(_entries());
+  IteratorWrapper<List<String>> entries() => IteratorWrapper(
+    _entries(),
+    (value) => (value as List?)?.cast(),
+  );
 
   /// Returns an [IteratorWrapper] allowing you to go through all keys of the
   /// key/value pairs contained in this object.

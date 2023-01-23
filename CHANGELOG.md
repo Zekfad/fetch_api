@@ -1,4 +1,9 @@
+## 1.0.0-dev.4
+
+- Fixes for `js.Iterator` with Arrays. (Resolves issue with `Headers`).
+
 ## 1.0.0-dev.3
+
 - **BREAKING**: Renamed extensions from `<Class>Extension` to `<Class>InstanceMembers`.
 - Added `fetch_api.compatibility_layer` library to support Dart 2.19.
   - Added `createHeadersFromMap`

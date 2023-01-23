@@ -34,5 +34,5 @@ class IteratorResult<T> {
 
   /// Any JavaScript value returned by the iterator.
   /// Can be omitted when [done] is `true`.
-  external T? value;
+  external dynamic value;
 }
