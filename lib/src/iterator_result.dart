@@ -1,6 +1,13 @@
 import '_js.dart';
 
 
+/// In practice, neither property is strictly required; if an object without
+/// either property is returned, it's effectively equivalent to
+/// `{ done: false, value: undefined }`.
+/// 
+/// If an iterator returns a result with `done: true`, any subsequent calls
+/// to `next()` are expected to return `done: true` as well, although
+/// this is not enforced on the language level.
 @JS()
 @anonymous
 class IteratorResult<T> {

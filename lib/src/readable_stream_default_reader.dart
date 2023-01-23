@@ -5,6 +5,12 @@ import 'readable_stream.dart';
 import 'readable_stream_default_reader_chunk.dart';
 
 
+/// The [ReadableStreamDefaultReader] interface of the Streams API represents
+/// a default reader that can be used to read stream data supplied from
+/// a network (such as a fetch request).
+/// 
+/// A [ReadableStreamDefaultReader] can be used to read from a [ReadableStream]
+/// that has an underlying source of any type.
 @JS()
 @staticInterop
 class ReadableStreamDefaultReader {
@@ -12,7 +18,7 @@ class ReadableStreamDefaultReader {
   external factory ReadableStreamDefaultReader(ReadableStream stream);
 }
 
-extension ReadableStreamDefaultReaderExtension on ReadableStreamDefaultReader {
+extension ReadableStreamDefaultReaderInstanceMembers on ReadableStreamDefaultReader {
   /// Returns a `Promise` that fulfills when the stream closes,
   /// or rejects if the stream throws an error or the reader's lock is released.
   /// This property enables you to write code that responds to an end to

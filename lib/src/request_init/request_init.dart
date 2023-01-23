@@ -113,7 +113,7 @@ class RequestInit {
   external AbortSignal? signal;
 }
 
-extension RequestInitExtension on RequestInit {
+extension RequestInitInstanceMembers on RequestInit {
   /// The mode you want to use for the request
   RequestMode get requestMode => RequestMode.from(mode);
   set requestMode(RequestMode requestMode) =>

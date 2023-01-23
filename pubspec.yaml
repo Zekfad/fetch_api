@@ -1,6 +1,6 @@
 name: fetch_api
 description: JavaScript bindings for Fetch API, allowing a flexible HTTP requests.
-version: 1.0.0-dev.2
+version: 1.0.0-dev.3
 homepage: https://github.com/Zekfad/fetch_api
 repository: https://github.com/Zekfad/fetch_api
 issue_tracker: https://github.com/Zekfad/fetch_api/issues
@@ -10,7 +10,7 @@ platforms:
   web:
 
 environment:
-  sdk: '>=2.18.0 <4.0.0'
+  sdk: '>=2.19.0-0 <4.0.0'
 
 dependencies:
   js: ^0.6.5

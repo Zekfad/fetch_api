@@ -1,7 +1,11 @@
 import '_js.dart';
 import 'readable_stream_default_reader.dart';
+import 'response.dart';
 
 
+/// The [ReadableStream] interface of the Streams API represents a readable
+/// stream of byte data. The Fetch API offers a concrete instance of
+/// a [ReadableStream] through the body property of a [Response] object.
 @JS()
 @staticInterop
 class ReadableStream {
@@ -12,7 +16,7 @@ class ReadableStream {
   ]);
 }
 
-extension ReadableStreamExtension on ReadableStream {
+extension ReadableStreamInstanceMembers on ReadableStream {
   /// Returns a [bool] indicating whether or not the readable stream
   /// is locked to a reader.
   external final bool locked;

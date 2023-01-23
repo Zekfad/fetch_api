@@ -2,6 +2,12 @@ import '_js.dart';
 import 'abort_signal.dart';
 
 
+/// The [AbortController] interface represents a controller object that allows
+/// you to abort one or more Web requests as and when desired.
+/// 
+/// You can create a new [AbortController] object using the `AbortController()`
+/// constructor. Communicating with a DOM request is done using an [AbortSignal]
+/// object.
 @JS()
 @staticInterop
 class AbortController {
@@ -9,8 +15,8 @@ class AbortController {
   external factory AbortController();
 }
 
-extension AbortControllerExtension on AbortController {
-  /// Returns an `AbortSignal` object instance, which can be used to
+extension AbortControllerInstanceMembers on AbortController {
+  /// Returns an [AbortSignal] object instance, which can be used to
   /// communicate with, or to abort, a DOM request.
   external final AbortSignal signal;
 

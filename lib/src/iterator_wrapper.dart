@@ -4,7 +4,7 @@ import 'dart:core' as core;
 import 'iterator.dart' as js;
 
 
-/// Wrapper on top of JS iterator, providing [Iterable] and [Iterator] APIs.
+/// Wrapper on top of [js.Iterator], implementing [Iterable] and [Iterator] APIs.
 class IteratorWrapper<T> extends IterableBase<T> implements core.Iterator<T> {
   IteratorWrapper(this._iterator);
 

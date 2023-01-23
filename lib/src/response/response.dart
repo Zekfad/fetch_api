@@ -8,15 +8,27 @@ import 'response_options.dart';
 import 'response_type.dart';
 
 
+/// The [Response] interface of the Fetch API represents the response
+/// to a request.
+/// 
+/// You can create a new [Response] object using the `Response()` constructor,
+/// but you are more likely to encounter a [Response] object being returned
+/// as the result of another API operation —for example, a service worker
+/// `FetchEvent.respondWith`, or a simple `fetch()`.
 @JS()
 @staticInterop
 class Response {
+  /// Creates a new [Response] object.
   external factory Response([dynamic body, ResponseOptions? options]);
+
+  /// Returns a new [Response] object associated with a network error.
   external static Response error();
+
+  /// Creates a new response with a different URL.
   external static Response redirect(String url, [int status = 302]);
 }
 
-extension ResponseExtension on Response {
+extension ResponseInstanceMembers on Response {
   /// A [ReadableStream] of the body contents.
   external final ReadableStream? body;
 
@@ -67,7 +79,7 @@ extension ResponseExtension on Response {
   /// Returns a promise that resolves with a [FormData] representation of
   /// the response body.
   @JS('formData')
-  external Promise<Blob> _formData();
+  external Promise<FormData> _formData();
 
   /// Returns a promise that resolves with the result of parsing the response
   /// body text as JSON.
