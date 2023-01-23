@@ -1,5 +1,11 @@
 ## 1.0.0-dev.3
 - **BREAKING**: Renamed extensions from `<Class>Extension` to `<Class>InstanceMembers`.
+- Added `fetch_api.compatibility_layer` library to support Dart 2.19.
+  - Added `createHeadersFromMap`
+  - Added `createHeadersFromArray` 
+  - Added `createRequestInit`
+  - Added `createAbortSignalTimeout`
+
 - `AbortSignal`
   - Added `timeout` constructor-like method.
   - Added `abort` constructor-like method.
@@ -14,7 +20,6 @@
   - Added docs.
 - `Headers`
   - Added docs.
-  - Add methods `headersFromMap` and `headersFromArray` to support Dart 2.19.
 - `Iterator` and `IteratorResult`
   - Added docs.
 - `ReadableStreamDefaultReader` and `ReadableStreamDefaultReaderChunk`

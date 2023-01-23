@@ -8,6 +8,8 @@ import 'request_mode.dart';
 import 'request_redirect.dart';
 import 'request_referrer_policy.dart';
 
+part 'request_init.compatibility_layer.dart';
+
 
 /// An object containing any custom settings that you want to apply to the
 /// request.
