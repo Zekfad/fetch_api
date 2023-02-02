@@ -18,6 +18,8 @@ class ReadableStreamDefaultReaderChunk {
     bool done,
   });
 
+  /// Chunk of data.
   external Uint8List? value;
+  /// Whether there are no more data will be available.
   external bool done;
 }

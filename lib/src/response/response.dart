@@ -82,7 +82,7 @@ extension ResponseInstanceMembers on Response {
   external Promise<FormData> _formData();
 
   /// Returns a promise that resolves with the result of parsing the response
-  /// body text as JSON.
+  /// body text as `JSON`.
   @JS('json')
   external Promise<dynamic> _json();
 
@@ -93,31 +93,34 @@ extension ResponseInstanceMembers on Response {
 
   /// [trailers] converted to Dart's [Future].
   Future<Headers>? responseTrailers() =>
-    // ignore: unnecessary_this
     this.trailers == null ? null : promiseToFuture(this.trailers!);
 
   /// The type of the response (e.g., basic, cors).
-  // ignore: unnecessary_this
-  ResponseType get responseType => ResponseType.from(this.type);
+  ResponseType get responseType =>
+    ResponseType.from(this.type);
 
   /// Returns a [Future] that resolves with an [ByteBuffer] representation of
   /// the response body.
-  Future<ByteBuffer> arrayBuffer() => promiseToFuture(_arrayBuffer());
+  Future<ByteBuffer> arrayBuffer() =>
+    promiseToFuture(_arrayBuffer());
 
   /// Returns a [Future] that resolves with a [Blob] representation of
   /// the response body.
-  Future<Blob> blob() => promiseToFuture(_blob());
+  Future<Blob> blob() =>
+    promiseToFuture(_blob());
 
   /// Returns a [Future] that resolves with a [FormData] representation of
   /// the response body.
-  Future<Blob> formData() => promiseToFuture(_formData());
+  Future<Blob> formData() =>
+    promiseToFuture(_formData());
 
   /// Returns a [Future] that resolves with the result of parsing the response
-  /// body text as JSON.
+  /// body text as `JSON`.
   Future<dynamic> json() =>
     promiseToFuture<dynamic>(_json()).then(dartify);
 
   /// Returns a promise that resolves with a text representation of
   /// the response body.
-  Future<String> text() => promiseToFuture(_text());
+  Future<String> text() =>
+    promiseToFuture(_text());
 }

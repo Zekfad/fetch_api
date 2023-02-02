@@ -1,4 +1,4 @@
-/// How to handle a redirect response.
+/// Specifies how to handle a redirect response.
 enum RequestRedirect {
   /// Automatically follow redirects.
   follow('follow'),

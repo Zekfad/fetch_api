@@ -1,10 +1,10 @@
 import '_js.dart';
-import 'request_init.dart';
+import 'fetch_options.dart';
 import 'response.dart';
 
 
 @JS('fetch')
-external Promise<Response> _fetch(dynamic resource, RequestInit? options);
+external Promise<Response> _fetch(dynamic resource, FetchOptions? options);
 
 /// The global `fetch()` method starts the process of fetching a resource
 /// from the network, returning a promise which is fulfilled once the response
@@ -26,5 +26,5 @@ external Promise<Response> _fetch(dynamic resource, RequestInit? options);
 /// The `fetch()` method is controlled by the `connect-src` directive of
 /// Content Security Policy rather than the directive of the resources
 /// it's retrieving.
-Future<Response> fetch(dynamic resource, [RequestInit? options]) =>
+Future<Response> fetch(dynamic resource, [FetchOptions? options]) =>
   promiseToFuture(_fetch(resource, options));

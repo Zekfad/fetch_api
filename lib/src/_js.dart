@@ -7,6 +7,8 @@ export 'package:js/js.dart';
 
 
 typedef Promise<T> = Object;
+typedef PromiseOr<T> = Object;
+typedef PromiseOrVoid = dynamic;
 
 extension JsObjectMapExtension<K, V> on Map<K, V> {
   dynamic toJsObject() => jsify(this);

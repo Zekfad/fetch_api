@@ -17,3 +17,10 @@ This package provides JavaScript bindings to [Fetch API](https://developer.mozil
 * Support streaming of data
 * Get access to redirect status
 * Support non-`200` responses
+
+## Some notes about `fetch` and `Request`
+
+`fetch` and `Request` have same options but different semantics, e.g. fetch`'s
+default mode is `no-cors` while `Request` is `cors`. Therefore options objects
+for this function and constructor made as different classes.
+For more info about that read [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
