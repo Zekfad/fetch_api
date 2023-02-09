@@ -1,10 +1,36 @@
+## 1.0.0-dev.5
+
+- **BREAKING**: Renamed `RequestInit` to `FetchOptions`.
+  This is done to make emphasis, that `fetch` and `Request` have different
+  (default) behaviors.
+- Added `Request`.
+- Added `RequestDuplex`. This adds support for request streaming in supported
+  browsers.
+- Added `ReadableStreamSource`. This allows you to create custom
+  `ReadableStream`s, that is required for request streaming.
+- Added `ReadableStreamDefaultController`.
+- Added `ReadableStreamSource` class that helps you to create custom source
+  for `ReadableStream`s. It can be created from Dart's`Stream`.
+- Added `RequestCache`.
+- Added `RequestDestination`.
+- Added missing options to `RequestMode` and added docs.
+- Added `FetchOptions` and `RequestOptions` with corresponding docs from MDN.
+- Compatibility layer:
+  - **BREAKING**: Renamed `createRequestInit` to `createFetchOptions`
+  - Added `createRequestOptions`.
+  - Added `createReadableStream`.
+  - Added `createReadableStreamSourceFromStream`.
+- Fixed dev dependencies versions, to allow running on Dart 2.19.
+
+
 ## 1.0.0-dev.4
 
 - Fixes for `js.Iterator` with Arrays. (Resolves issue with `Headers`).
 
 ## 1.0.0-dev.3
 
-- **BREAKING**: Renamed extensions from `<Class>Extension` to `<Class>InstanceMembers`.
+- **BREAKING**: Renamed extensions from `<Class>Extension` to
+  `<Class>InstanceMembers`.
 - Added `fetch_api.compatibility_layer` library to support Dart 2.19.
   - Added `createHeadersFromMap`
   - Added `createHeadersFromArray` 
