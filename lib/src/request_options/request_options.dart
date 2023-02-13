@@ -61,6 +61,7 @@ class RequestOptions {
     String? integrity,
     bool? keepalive,
     AbortSignal? signal,
+    // ignore: unused_element
     String? duplex,
   });
 
