@@ -1,3 +1,8 @@
+## 1.0.0
+
+- Public stable release.
+- Bumped `js` to 0.6.7.
+
 ## 1.0.0-dev.5
 
 - **BREAKING**: Renamed `RequestInit` to `FetchOptions`.
@@ -10,7 +15,7 @@
   `ReadableStream`s, that is required for request streaming.
 - Added `ReadableStreamDefaultController`.
 - Added `ReadableStreamSource` class that helps you to create custom source
-  for `ReadableStream`s. It can be created from Dart's`Stream`.
+  for `ReadableStream`s. It can be created from Dart's `Stream`.
 - Added `RequestCache`.
 - Added `RequestDestination`.
 - Added missing options to `RequestMode` and added docs.

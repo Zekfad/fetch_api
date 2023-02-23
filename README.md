@@ -1,7 +1,8 @@
-# Fetch API.
+# Fetch API
 
 > Some methods are working only with Dart 3.0, see
-> [compatibility_layer](lib/compatibility_layer.dart) for more info.
+> [compatibility_layer](https://pub.dev/documentation/fetch_api/latest/fetch_api.compatibility_layer/fetch_api.compatibility_layer-library.html)
+> library for more info.
 
 This package provides JavaScript bindings to
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
