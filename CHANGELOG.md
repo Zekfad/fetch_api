@@ -1,7 +1,11 @@
+## 1.0.1
+
+- Downgraded `js` dependency to `^0.6.5` (#2).
+
 ## 1.0.0
 
 - Public stable release.
-- Bumped `js` to 0.6.7.
+- Bumped `js` dependency to `^0.6.7`.
 
 ## 1.0.0-dev.5
 
