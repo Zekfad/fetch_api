@@ -21,11 +21,16 @@ class Response {
   /// Creates a new [Response] object.
   external factory Response([dynamic body, ResponseOptions? options]);
 
+  /// Creates a new response with a different URL.
+  factory Response.redirect(String url, [int status = 302]) =>
+    _redirect(url, status);
+
   /// Returns a new [Response] object associated with a network error.
   external static Response error();
 
   /// Creates a new response with a different URL.
-  external static Response redirect(String url, [int status = 302]);
+  @JS('redirect')
+  external static Response _redirect(String url, int status);
 }
 
 extension ResponseInstanceMembers on Response {
