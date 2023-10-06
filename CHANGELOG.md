@@ -1,3 +1,8 @@
+## 1.0.2
+
+- Change `Iterator` to static interop.
+  Workaround for [sdk#53532](https://github.com/dart-lang/sdk/issues/53532).
+
 ## 1.0.1
 
 - Downgraded `js` dependency to `^0.6.5` (#2).
