@@ -14,7 +14,7 @@ class Iterator<T> {
 }
 
 // Type argument is omitted due to limitations.
-extension IteratorInstanceMembers on Iterator {
+extension IteratorInstanceMembers on Iterator<dynamic> {
   /// A function that accepts zero or one argument and returns an object
   /// conforming to the [IteratorResult] interface.
   /// 
@@ -22,5 +22,5 @@ extension IteratorInstanceMembers on Iterator {
   /// when a built-in language feature (such as `for...of`) is using
   /// the iterator, a `TypeError` (`"iterator.next() returned a non-object
   /// value"`) will be thrown.
-  external IteratorResult next();
+  external IteratorResult<dynamic> next();
 }
