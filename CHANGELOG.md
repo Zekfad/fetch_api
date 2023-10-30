@@ -1,3 +1,10 @@
+## 1.0.3
+
+- Remove type from `IteratorInstanceMembers` to support old language
+  version.
+  Technically this is a breaking, and `IteratorResult` falls back to `dynamic`
+  now, but it isn't exposed via public API and wrapper still works the same.
+
 ## 1.0.2
 
 - Change `Iterator` to static interop.

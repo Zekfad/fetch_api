@@ -8,12 +8,13 @@ import 'iterator_result.dart';
 /// 
 /// All iterator protocol methods (`next()`, `return()`, and `throw()`) are
 /// expected to return an object implementing the [IteratorResult] interface.
-@JS()
+@JS('Iterator')
 @staticInterop
 class Iterator<T> {
 }
 
-extension IteratorInstanceMembers<T> on Iterator<T> {
+// Type argument is omitted due to limitations.
+extension IteratorInstanceMembers on Iterator {
   /// A function that accepts zero or one argument and returns an object
   /// conforming to the [IteratorResult] interface.
   /// 
@@ -21,5 +22,5 @@ extension IteratorInstanceMembers<T> on Iterator<T> {
   /// when a built-in language feature (such as `for...of`) is using
   /// the iterator, a `TypeError` (`"iterator.next() returned a non-object
   /// value"`) will be thrown.
-  external IteratorResult<T> next();
+  external IteratorResult next();
 }

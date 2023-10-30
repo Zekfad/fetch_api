@@ -15,10 +15,12 @@ class IteratorWrapper<T> extends IterableBase<T> implements core.Iterator<T> {
     : valueCaster = valueCaster ?? _valueCasterAs;
 
   /// Default value caster via `as`.
-  static T?  _valueCasterAs<T>(dynamic value) => value as T?; 
+  static T? _valueCasterAs<T>(dynamic value) => value as T?; 
 
   /// Target [js.Iterator].
   final js.Iterator<T> _iterator;
+
+  js.Iterator<T> get m_iterator => _iterator;
 
   /// Function that processes JS dynamic value into target class [T].
   /// It is needed when JS value isn't exact type of [T], e.g. JS lists are
