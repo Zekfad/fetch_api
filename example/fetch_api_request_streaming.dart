@@ -23,13 +23,13 @@ void main() async {
     );
   })();
 
-  final readableStream = ReadableStream(ReadableStreamSource.fromStream(stream));
+  final readableStream = ReadableStream.fromTypedDataStream(stream);
 
   final request = Request(
     'https://api.restful-api.dev/objects',
     RequestOptions(
       method: 'POST',
-      body: readableStream,
+      body: RequestBody.fromReadableStream(readableStream),
       duplex: RequestDuplex.half,
       headers: Headers.fromMap({
         'content-type': 'application/json',
