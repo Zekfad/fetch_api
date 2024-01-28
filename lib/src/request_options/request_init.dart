@@ -1,40 +1,35 @@
-import 'dart:html' show Blob, FormData, UrlSearchParams;
-import 'dart:typed_data' show ByteBuffer;
+import 'dart:js_interop';
 
-import '../_js.dart';
-import '../abort_controller.dart';
+import 'dart:typed_data' show ByteBuffer, TypedData;
+import 'package:web/web.dart' show Blob, FormData, URLSearchParams;
+
 import '../abort_signal.dart';
 import '../headers.dart';
-import '../readable_stream.dart';
+import '../readable_stream.dart' show ReadableStream;
 import '../request.dart';
 
-part 'fetch_options.compatibility_layer.dart';
 
-
-/// An object containing any custom options that you want to apply to the fetch
-/// request.
-@JS()
-@anonymous
-class FetchOptions {
-  factory FetchOptions({
-    String method = 'GET',
-    Headers? headers,
-    dynamic body,
-    RequestMode mode = RequestMode.noCors,
-    RequestCredentials credentials = RequestCredentials.sameOrigin,
-    RequestCache cache = RequestCache.byDefault,
-    RequestRedirect redirect = RequestRedirect.follow,
-    String referrer = '',
-    RequestReferrerPolicy referrerPolicy = RequestReferrerPolicy.strictOriginWhenCrossOrigin,
-    String integrity = '',
-    bool keepalive = false,
-    AbortSignal? signal,
-    RequestDuplex? duplex,
+/// An object containing `options` for [Request] constructor.
+extension type RequestInit<AbortType extends JSAny>._(JSObject _) implements JSObject {
+  factory RequestInit({
+    required String method,
+    required Headers? headers,
+    required RequestBody? body,
+    required RequestMode mode,
+    required RequestCredentials credentials,
+    required RequestCache cache,
+    required RequestRedirect redirect,
+    required String referrer,
+    required RequestReferrerPolicy referrerPolicy,
+    required String integrity,
+    required bool keepalive,
+    required AbortSignal<AbortType>? signal,
+    required RequestDuplex? duplex,
   }) {
-    final options = FetchOptions._(
+    final options = RequestInit<AbortType>._new(
       method: method,
       headers: headers ?? Headers(),
-      body: body,
+      body: body?.toJS,
       mode: mode.toString(),
       credentials: credentials.toString(),
       cache: cache.toString(),
@@ -50,10 +45,11 @@ class FetchOptions {
     return options;
   }
 
-  external factory FetchOptions._({
+  @JS('')
+  external factory RequestInit._new({
     String? method,
     Headers? headers,
-    dynamic body,
+    JSAny? body,
     String? mode,
     String? credentials,
     String? cache,
@@ -69,68 +65,86 @@ class FetchOptions {
 
   /// The request method, e.g., `GET`, `POST`.
   /// 
-  /// Note that the `Origin` header is not set on Fetch requests with a method
-  /// of `HEAD` or `GET`.
+  /// The default is `GET`.
+  @JS()
   external String method;
 
   /// Any headers you want to add to your request, contained within a [Headers]
   /// object or an object literal with [String] values.
-  /// 
-  /// Note that some names are forbidden.
+  @JS()
   external Headers headers;
 
   /// Any body that you want to add to your request: this can be a [Blob],
-  /// an `ArrayBuffer` ([ByteBuffer]), a `TypedArray`, a `DataView`,
-  /// a [FormData], a [UrlSearchParams], [String] object or literal,
+  /// an `ArrayBuffer` ([ByteBuffer]), a `TypedArray` ([TypedData]), a `DataView`,
+  /// a [FormData], a [URLSearchParams], [String] object or literal,
   /// or a [ReadableStream] object.
   /// 
   /// This latest possibility is still experimental; check the compatibility
   /// information to verify you can use it.
   /// 
   /// Note that a request using the `GET` or `HEAD` method cannot have a body.
-  external dynamic body;
+  RequestBody get body => RequestBody.fromJSAny(_body);
+  set body(RequestBody body) => _body = body.toJS;
+
+  @JS('body')
+  external JSAny _body;
 
   /// The mode you want to use for the request, e.g., `cors`, `no-cors`,
-  /// or `same-origin`.
+  /// `same-origin`, or `navigate`.
+  /// 
+  /// The default is `cors`.
+  @JS()
   external String mode;
 
-  /// Controls what browsers do with credentials (cookies, HTTP authentication
-  /// entries, and TLS client certificates).
+  /// The request credentials you want to use for the request: `omit`,
+  /// `same-origin`, or `include`.
+  /// 
+  /// The default is `same-origin`.
+  @JS()
   external String credentials;
 
-  /// A string indicating how the request will interact with the browser's
-  /// HTTP cache.
+  /// The cache mode you want to use for the request.
+  @JS()
   external String cache;
 
-  /// How to handle a redirect response.
+  /// The redirect mode to use: `follow`, `error`, or `manual`.
+  /// 
+  /// The default is `follow`.
+  @JS()
   external String redirect;
 
-  /// A string specifying the referrer of the request.
-  /// This can be a same-origin URL, `about:client`, or an empty string.
+  /// A string specifying `no-referrer`, `client`, or a URL.
+  /// 
+  /// The default is `about:client`.
+  @JS()
   external String referrer;
 
-  /// Specifies the referrer policy to use for the request.
+  /// A string that changes how the referrer header is populated during
+  /// certain actions (e.g., fetching subresources, prefetching,
+  /// performing navigations).
+  @JS()
   external String referrerPolicy;
 
   /// Contains the subresource integrity value of the request
   /// (e.g.,`sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=`)
+  @JS()
   external String integrity;
 
-  /// The `keepalive` option can be used to allow the request to outlive
-  /// the page. Fetch with the `keepalive` flag is a replacement for the
-  /// `Navigator.sendBeacon()` API.
+  /// A boolean that indicates whether to make a persistent connection
+  /// for multiple requests/responses.
+  @JS()
   external bool keepalive;
 
-  /// An [AbortSignal] object instance; allows you to communicate
-  /// with a fetch request and abort it if desired via an [AbortController].
-  external AbortSignal? signal;
+  /// An [AbortSignal] object which can be used to communicate with/abort
+  /// a request.
+  @JS()
+  external AbortSignal<AbortType>? signal;
 
   /// Request duplex mode (if enabled).
   /// Required to use [ReadableStream] as body.
+  @JS()
   external String? duplex;
-}
 
-extension FetchOptionsInstanceMembers on FetchOptions {
   /// Controls the mode you want to use for the request.
   RequestMode get requestMode =>
     RequestMode.from(this.mode);

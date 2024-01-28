@@ -1,4 +1,5 @@
 export 'request/request.dart';
+export 'request/request_body.dart';
 export 'request/request_cache.dart';
 export 'request/request_credentials.dart';
 export 'request/request_duplex.dart';

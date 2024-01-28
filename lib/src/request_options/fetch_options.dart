@@ -6,17 +6,18 @@ import '../request.dart';
 import 'request_init.dart';
 
 
-/// An object containing `options` for [Request] constructor.
-extension type RequestOptions<AbortType extends JSAny>._(RequestInit<AbortType> _) implements RequestInit<AbortType> {
-  factory RequestOptions({
+/// An object containing any custom options that you want to apply to the fetch
+/// request.
+extension type FetchOptions<AbortType extends JSAny>._(RequestInit<AbortType> _) implements RequestInit<AbortType>  {
+  factory FetchOptions({
     String method = 'GET',
     Headers? headers,
     RequestBody? body,
-    RequestMode mode = RequestMode.cors,
+    RequestMode mode = RequestMode.noCors,
     RequestCredentials credentials = RequestCredentials.sameOrigin,
     RequestCache cache = RequestCache.byDefault,
     RequestRedirect redirect = RequestRedirect.follow,
-    String referrer = 'about:client',
+    String referrer = '',
     RequestReferrerPolicy referrerPolicy = RequestReferrerPolicy.strictOriginWhenCrossOrigin,
     String integrity = '',
     bool keepalive = false,
@@ -36,5 +37,5 @@ extension type RequestOptions<AbortType extends JSAny>._(RequestInit<AbortType> 
     keepalive: keepalive,
     signal: signal,
     duplex: duplex,
-  ) as RequestOptions<AbortType>;
+  ) as FetchOptions<AbortType>;
 }
