@@ -36,5 +36,5 @@ Future<Response> fetch(Object resource, [ RequestInit? options, ]) =>
       JSObject() => resource,
       _ => throw StateError('Invalid resource type: ${resource.runtimeType}'),
     },
-    options ?? FetchOptions(),
+    options,
   ).toDart;
