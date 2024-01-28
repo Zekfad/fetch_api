@@ -1,4 +1,4 @@
-include: package:zekfad_lints/untyped/dart.yaml
+include: package:zekfad_lints/recommended.yaml
 
 linter:
   rules:
