@@ -1,6 +1,8 @@
 import 'dart:js_interop';
 
-import 'iterator.dart';
+import 'js_iterator.dart';
+import 'request.dart';
+import 'response.dart';
 
 
 /// The [Headers] interface of the Fetch API allows you to perform various
