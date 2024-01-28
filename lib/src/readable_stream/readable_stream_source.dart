@@ -53,8 +53,9 @@ extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(
           onError: (Object error) {
             final object = switch (error) {
               String() => error.toJS,
-              JSObject() => error,
               Exception() || Error() => error.toString().toJS,
+              // Always succeeds, because of JS type erasure.
+              JSObject() => error,
               _ => error.toJSBox,
             };
             controller.error(object);
