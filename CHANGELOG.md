@@ -1,3 +1,14 @@
+## 2.0.0-wip
+
+- Full rewrite to use `extension type`s - no more `InstanceMembers`.
+- Internally JS Iterator are now fully covered with generics.
+- JS Iterator is no longer exported via public API.
+- Headers uses `(String, String)` in entries instead of `List<String>`.
+- `FetchOptions` and `RequestOptions` are now inherited from `RequestInit`
+  and interchangeable.
+- `ReadableStreamSource` `start`, `pull` and `cancel` are now only callable
+  via JS interop, as they require binding to parent object.
+
 ## 1.0.3
 
 - Remove type from `IteratorInstanceMembers` to support old language
