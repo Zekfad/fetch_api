@@ -4,17 +4,27 @@ import 'dart:typed_data' show ByteBuffer, TypedData;
 import 'package:web/web.dart' show Blob, FormData, URLSearchParams;
 
 import '../readable_stream.dart' show ReadableStream;
+import 'request.dart';
 
 
+/// [Request.body] union type.
 extension type RequestBody._(Object? _) {
+  /// Wrap [Blob] to [RequestBody] union.
   factory RequestBody.fromBlob(Blob blob) = _RequestBodyBlob;
+  /// Wrap [FormData] to [RequestBody] union.
   factory RequestBody.fromFormData(FormData blob) = _RequestBodyFormData;
+  /// Wrap [URLSearchParams] to [RequestBody] union.
   factory RequestBody.fromURLSearchParams(URLSearchParams blob) = _RequestBodyURLSearchParams;
+  /// Wrap [ByteBuffer] to [RequestBody] union.
   factory RequestBody.fromByteBuffer(ByteBuffer blob) = _RequestBodyByteBuffer;
+  /// Wrap [TypedData] to [RequestBody] union.
   factory RequestBody.fromTypedData(TypedData blob) = _RequestBodyTypedData;
+  /// Wrap [ReadableStream] to [RequestBody] union.
   factory RequestBody.fromReadableStream(ReadableStream blob) = _RequestBodyReadableStream;
+  /// Wrap [String] to [RequestBody] union.
   factory RequestBody.fromString(String string) = _RequestBodyString;
 
+  /// Try to create [RequestBody] from JS value.
   factory RequestBody.fromJSAny(JSAny _body) => switch(_body) {
     final Blob body => RequestBody.fromBlob(body),
     final FormData body => RequestBody.fromFormData(body),
@@ -29,6 +39,7 @@ extension type RequestBody._(Object? _) {
     _ => throw StateError('Invalid state of body: unknown type: ${_body.runtimeType}'),
   };
 
+  /// Convert to target JS value.
   JSAny get toJS => this as JSAny;
 }
 
