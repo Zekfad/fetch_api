@@ -1,4 +1,5 @@
 import 'dart:js_interop';
+import 'dart:typed_data';
 
 // import 'readable_stream_source.dart';
 // import 'readable_stream_default_controller.dart';
@@ -44,6 +45,14 @@ extension type ReadableStream<T extends JSAny, AbortType extends JSAny>._(JSObje
   external factory ReadableStream._new$2(
     ReadableStreamSource<T, AbortType>? underlyingSource,
     JSObject? queuingStrategy,
+  );
+
+  static ReadableStream<JSObject, AbortType> fromTypedDataStream<AbortType extends JSAny>(
+    Stream<TypedData> stream,
+    [ JSObject? queuingStrategy, ]
+  ) => ReadableStream(
+    ReadableStreamSource.fromStream(stream.cast()),
+    queuingStrategy,
   );
 
   /// Returns a [bool] indicating whether or not the readable stream

@@ -1,7 +1,7 @@
 import 'dart:js_interop';
 import 'dart:typed_data';
 
-// import 'readable_stream_default_reader.dart';
+import 'readable_stream_default_reader.dart';
 
 
 /// Describes chunk from [ReadableStreamDefaultReader.read].
