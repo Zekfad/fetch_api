@@ -1,48 +1,75 @@
+// ignore_for_file: prefer_void_to_null
+
 import 'dart:async';
+import 'dart:js_interop';
 import 'dart:typed_data';
 
-import '../_js.dart';
-import '../readable_stream.dart';
-import '../readable_stream_default_controller.dart';
-import '../readable_stream_default_reader.dart';
 import '../request.dart';
 import '../response.dart';
-
-part 'readable_stream_source.compatibility_layer.dart';
+import 'readable_stream_default_controller.dart';
+import 'readable_stream_default_reader.dart';
+import 'readable_stream_source_cancel_method.dart';
+import 'readable_stream_source_controller_method.dart';
 
 
 /// An object containing methods and properties that define how the constructed
 /// stream instance will behave.
 /// 
 /// Note: Use [Uint8List] if you want compatibility with [Response] or [Request].
-@JS()
-@anonymous
-class ReadableStreamSource<T> {
-  external factory ReadableStreamSource({
-    PromiseOrVoid Function(ReadableStreamDefaultController<T> controller)? start,
-    PromiseOrVoid Function(ReadableStreamDefaultController<T> controller)? pull,
-    PromiseOrVoid Function(String reason)? cancel,
+extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(JSObject _) implements JSObject {
+  factory ReadableStreamSource({
+    ReadableStreamSourceControllerMethodFunction<T, JSAny?>? start,
+    ReadableStreamSourceControllerMethodFunction<T, JSAny?>? pull,
+    ReadableStreamSourceCancelMethodFunction<T, JSAny?, AbortType>? cancel,
     String? type,
     int? autoAllocateChunkSize,
-  });
+  }) {
+    final object = JSObject() as ReadableStreamSource<T, AbortType>;
+    if (start != null)
+      object.start = ReadableStreamSourceControllerMethod(start);
+    if (pull != null)
+      object.pull = ReadableStreamSourceControllerMethod(pull);
+    if (cancel != null)
+      object.cancel = ReadableStreamSourceCancelMethod<T, JSAny?, AbortType>(cancel);
+    if (type != null)
+      object.type = type;
+    if (autoAllocateChunkSize != null)
+      object.autoAllocateChunkSize = autoAllocateChunkSize;
+    return object;
+  }
 
   /// Create [ReadableStreamSource] from Dart [Stream].
   factory ReadableStreamSource.fromStream(Stream<T> stream) {
     late final StreamSubscription<T> subscription;
     return ReadableStreamSource(
-      start: allowInterop((controller) {
+      start: (controller) {
         subscription = stream.listen(
           (event) {
             controller.enqueue(event);
+            if (controller.desiredSize <= 0)
+              subscription.pause();
+          },
+          // ignore: avoid_types_on_closure_parameters
+          onError: (Object error) {
+            final object = switch (error) {
+              String() => error.toJS,
+              JSObject() => error,
+              Exception() || Error() => error.toString().toJS,
+              _ => error.toJSBox,
+            };
+            controller.error(object);
           },
           onDone: () {
             controller.close();
           },
         );
-      }),
-      cancel: allowInterop(
-        (reason) async => subscription.cancel(),
-      ),
+      },
+      pull: (controller) {
+        subscription.resume();
+      },
+      cancel: (reason, controller) async {
+        await subscription.cancel();
+      },
     );
   }
 
@@ -59,7 +86,8 @@ class ReadableStreamSource<T> {
   /// depending on the value of the type property.
   /// 
   /// This can be used by the developer to control the stream during set up.
-  external PromiseOr<void> Function(ReadableStreamDefaultController<T> controller)? start;
+  @JS('start')
+  external ReadableStreamSourceControllerMethod<T, JSAny?>? start;
 
   /// This method, also defined by the developer, will be called repeatedly
   /// when the stream's internal queue of chunks is not full, up until
@@ -74,11 +102,11 @@ class ReadableStreamSource<T> {
   /// 
   /// This can be used by the developer to control the stream as more chunks
   /// are fetched.
-  external PromiseOr<void> Function(ReadableStreamDefaultController<T> controller)? pull;
+  @JS('pull')
+  external ReadableStreamSourceControllerMethod<T, JSAny?>? pull;
 
   /// This method, also defined by the developer, will be called if the app
-  /// signals that the stream is to be cancelled
-  /// (e.g. if [ReadableStreamInstanceMembers.cancel] is called).
+  /// signals that the stream is to be cancelled (e.g. if [cancel] is called).
   /// 
   /// The contents should do whatever is necessary to release access
   /// to the stream source. If this process is asynchronous, it can return
@@ -86,13 +114,15 @@ class ReadableStreamSource<T> {
   /// 
   /// The reason parameter contains a string describing why the stream
   /// was cancelled.
-  external PromiseOr<void> Function(String reason)? cancel;
+  @JS('cancel')
+  external ReadableStreamSourceCancelMethod<T, JSAny?, AbortType>? cancel;
 
   /// This property controls what type of readable stream is being dealt with.
   /// If it is included with a value set to "bytes", the passed controller
   /// object will be a `ReadableByteStreamController` capable of handling a BYOB
   /// (bring your own buffer)/byte stream. If it is not included,
   /// the passed controller will be a [ReadableStreamDefaultController].
+  @JS()
   external String? type;
 
   /// For byte streams, the developer can set the [autoAllocateChunkSize] with
@@ -106,5 +136,6 @@ class ReadableStreamSource<T> {
   /// will still stream data, but `ReadableByteStreamController.byobRequest`
   /// will always be `null` and transfers to the consumer must be via
   /// the stream's internal queues.
+  @JS()
   external int? autoAllocateChunkSize;
 }
