@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_void_to_null
-
 import 'dart:async';
 import 'dart:js_interop';
 import 'dart:typed_data';

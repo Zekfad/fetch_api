@@ -119,7 +119,7 @@ extension type Response._(JSObject _) implements JSObject {
 
   /// The type of the response (e.g., basic, cors).
   ResponseType get responseType =>
-    ResponseType.from(this.type);
+    ResponseType.from(type);
 
   /// Returns a [Future] that resolves with an [ByteBuffer] representation of
   /// the response body.
