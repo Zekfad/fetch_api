@@ -1,10 +1,6 @@
 # Fetch API
 
-> Some methods are working only with Dart 3.0, see
-> [compatibility_layer](https://pub.dev/documentation/fetch_api/latest/fetch_api.compatibility_layer/fetch_api.compatibility_layer-library.html)
-> library for more info.
-
-This package provides JavaScript bindings to
+This package provides WASM-ready Dart bindings to JavaScript 
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
 ## Features
@@ -23,6 +19,8 @@ This package provides JavaScript bindings to
 ## Some notes about `fetch` and `Request`
 
 `fetch` and `Request` have same options but different semantics, e.g. `fetch`'s
-default mode is `no-cors` while `Request` is `cors`. Therefore options objects
-for this function and constructor made as different classes.
+default mode is `no-cors` while `Request`'s `cors`. Therefore options objects
+for `fetch` function and `Request` constructor made as different extension
+types, although they are interchangeable and both inherited from `RequestInit`.
+
 For more info about that read [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
