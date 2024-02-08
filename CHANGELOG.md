@@ -1,4 +1,4 @@
-## 2.0.0-wip
+## 2.0.0-wasm
 
 - Full rewrite to use `extension type`s - no more `InstanceMembers`.
 - Internally JS Iterator are now fully covered with generics.
