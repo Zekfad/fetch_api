@@ -24,7 +24,7 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
   external final JSPromise<JSAny> _closed;
 
   @JS('cancel')
-  external JSPromise<JSAny> _cancel([ AbortType? reason, ]);
+  external JSPromise<JSAny?> _cancel([ AbortType? reason, ]);
 
   @JS('read')
   external JSPromise<ReadableStreamDefaultReaderChunk> _read();
