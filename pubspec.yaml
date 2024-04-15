@@ -1,6 +1,6 @@
 name: fetch_api
 description: JavaScript bindings for Fetch API, flexible HTTP requests, redirects, streaming and more.
-version: 2.0.0-wasm
+version: 2.0.0
 homepage: https://github.com/Zekfad/fetch_api
 repository: https://github.com/Zekfad/fetch_api
 issue_tracker: https://github.com/Zekfad/fetch_api/issues
@@ -10,11 +10,11 @@ platforms:
   web:
 
 environment:
-  sdk: '>=3.3.0-0 <4.0.0'
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
   # no upper bound, because we use only Types
-  web: '>=0.4.2'
+  web: '>=0.5.0'
 
 dev_dependencies:
   build_runner: '>=2.4.8'
