@@ -1,9 +1,10 @@
-## 2.0.0-wasm
+## 2.0.0
 
+- **BREAKING**: migrate to `package:web` with WASM support. 
 - Full rewrite to use `extension type`s - no more `InstanceMembers`.
-- Internally JS Iterator are now fully covered with generics.
+- Internal JS Iterators are now fully covered with generics.
 - JS Iterator is no longer exported via public API.
-- Headers uses `(String, String)` in entries instead of `List<String>`.
+- `Headers` uses `(String, String)` in entries instead of `List<String>`.
 - `FetchOptions` and `RequestOptions` are now inherited from `RequestInit`
   and interchangeable.
 - `ReadableStreamSource` `start`, `pull` and `cancel` are now only callable
