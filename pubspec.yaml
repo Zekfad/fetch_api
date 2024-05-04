@@ -5,6 +5,9 @@ homepage: https://github.com/Zekfad/fetch_api
 repository: https://github.com/Zekfad/fetch_api
 issue_tracker: https://github.com/Zekfad/fetch_api/issues
 # documentation: https://pub.dev/documentation/fetch_api/latest/
+topics:
+  - web
+  - fetch
 
 platforms:
   web:
