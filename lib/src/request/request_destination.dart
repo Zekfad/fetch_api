@@ -1,4 +1,4 @@
-import 'request.dart';
+import 'request.dart' if (dart.library.io) '';
 
 
 /// The destination `read-only` property of the [Request] interface
