@@ -1,5 +1,8 @@
 # Fetch API
 
+[![pub package](https://img.shields.io/pub/v/fetch_api.svg)](https://pub.dev/packages/fetch_api)
+[![package publisher](https://img.shields.io/pub/publisher/fetch_api.svg)](https://pub.dev/packages/fetch_api/publisher)
+
 This package provides WASM-ready Dart bindings to JavaScript 
 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
