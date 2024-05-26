@@ -1,3 +1,11 @@
+## 2.1.0
+
+- Add `package:fetch_api/enums.dart` `fetch_api.enums` package with enumerations
+  available to all platforms (including VM).
+- Use `DOMException` from `package:web` instead of alias to`JSObject`.
+- Enumerations use `if (dart.library.io) ''` for documentation-only imports,
+  this allows to use them in non-JS environments.
+
 ## 2.0.0
 
 - **BREAKING**: migrate to `package:web` with WASM support. 

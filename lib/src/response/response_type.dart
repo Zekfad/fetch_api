@@ -1,4 +1,4 @@
-import 'response.dart';
+import 'response.dart' if (dart.library.io) '';
 
 
 /// The type of the response.

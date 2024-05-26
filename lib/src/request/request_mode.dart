@@ -1,5 +1,5 @@
-import '../request.dart';
-import '../response.dart';
+import '../response/response.dart' if (dart.library.io) '';
+import 'request.dart' if (dart.library.io) '';
 
 
 /// Mode is used to determine if cross-origin requests lead to valid responses,

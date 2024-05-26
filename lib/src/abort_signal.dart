@@ -1,7 +1,7 @@
 import 'dart:js_interop';
 
+import 'package:web/web.dart' show DOMException;
 import 'abort_controller.dart';
-import 'dom_exception.dart';
 
 
 /// The [AbortSignal] interface represents a signal object that allows you

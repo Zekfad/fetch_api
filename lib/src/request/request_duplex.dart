@@ -1,4 +1,4 @@
-import 'request.dart';
+import 'request.dart' if (dart.library.io) '';
 
 
 /// [Request] duplex mode.
