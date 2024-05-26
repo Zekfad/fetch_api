@@ -22,6 +22,8 @@
 - Fixed `Response` and `Request` not working in WASM: this happened due to JS
   runtime being more lax in type assertions, namely `JSString` as `String` is
   ok in JS runtime, but fails in WASM.
+- `Response` and `Request` now uses precise type
+  `ReadableStream<JSUint8Array, JSAny>`
 
 ## 2.1.0
 
