@@ -9,19 +9,19 @@ import 'response.dart';
 /// [Response.body] union type.
 extension type ResponseBody._(JSAny _) implements JSAny {
   /// Wrap [Blob] to [ResponseBody] union.
-  factory ResponseBody.fromBlob(Blob blob) = _ResponseBodyBlob;
+  factory ResponseBody.fromBlob(Blob body) = _ResponseBodyBlob;
   /// Wrap [FormData] to [ResponseBody] union.
-  factory ResponseBody.fromFormData(FormData blob) = _ResponseBodyFormData;
+  factory ResponseBody.fromFormData(FormData body) = _ResponseBodyFormData;
   /// Wrap [URLSearchParams] to [ResponseBody] union.
-  factory ResponseBody.fromURLSearchParams(URLSearchParams blob) = _ResponseBodyURLSearchParams;
+  factory ResponseBody.fromURLSearchParams(URLSearchParams body) = _ResponseBodyURLSearchParams;
   /// Wrap [JSArrayBuffer] to [ResponseBody] union.
-  factory ResponseBody.fromJSArrayBuffer(JSArrayBuffer blob) = _ResponseBodyJSArrayBuffer;
+  factory ResponseBody.fromJSArrayBuffer(JSArrayBuffer body) = _ResponseBodyJSArrayBuffer;
   /// Wrap [JSTypedArray] to [ResponseBody] union.
-  factory ResponseBody.fromJSTypedArray(JSTypedArray blob) = _ResponseBodyJSTypedArray;
+  factory ResponseBody.fromJSTypedArray(JSTypedArray body) = _ResponseBodyJSTypedArray;
   /// Wrap [ReadableStream] to [ResponseBody] union.
-  factory ResponseBody.fromReadableStream(ReadableStream<JSUint8Array, JSAny> blob) = _ResponseBodyReadableStream;
+  factory ResponseBody.fromReadableStream(ReadableStream<JSUint8Array, JSAny> body) = _ResponseBodyReadableStream;
   /// Wrap [JSString] to [ResponseBody] union.
-  factory ResponseBody.fromJSString(JSString string) = _ResponseBodyJSString;
+  factory ResponseBody.fromJSString(JSString body) = _ResponseBodyJSString;
 
   /// Try to create [ResponseBody] from JS value.
   factory ResponseBody.fromJSAny(JSAny _body) => switch(_body) {
