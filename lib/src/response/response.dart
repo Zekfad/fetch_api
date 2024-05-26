@@ -51,7 +51,7 @@ extension type Response._(JSObject _) implements JSObject {
 
   /// A [ReadableStream] of the body contents.
   @JS()
-  external final ReadableStream? body;
+  external final ReadableStream<JSUint8Array, JSAny>? body;
 
   /// Stores a boolean value that declares whether the body has been used in a
   /// response yet.

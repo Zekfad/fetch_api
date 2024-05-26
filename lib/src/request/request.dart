@@ -62,7 +62,7 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
 
   /// A [ReadableStream] of the body contents.
   @JS()
-  external final ReadableStream? body;
+  external final ReadableStream<JSUint8Array, JSAny>? body;
 
   /// Stores `true` or `false` to indicate whether or not
   /// the body has been used in a request yet.
