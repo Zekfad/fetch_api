@@ -39,7 +39,7 @@ enum RequestDestination {
   /// The target is a service worker.
   serviceWorker('serviceworker'),
   /// The target is a shared worker.
-  sharedworker('sharedworker'),
+  sharedWorker('sharedworker'),
   /// The target is a style
   style('style'),
   /// The target is an HTML `<track>`.
