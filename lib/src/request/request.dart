@@ -154,12 +154,12 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   /// Returns a promise that resolves with an [ByteBuffer] representation of
   /// the request body.
   @JS('arrayBuffer')
-  external JSPromise<JSObject> _arrayBuffer();
+  external JSPromise<JSArrayBuffer> _arrayBuffer();
 
   /// Returns a promise that resolves with a [Blob] representation of
   /// the request body.
   @JS('blob')
-  external JSPromise<JSObject> _blob();
+  external JSPromise<Blob> _blob();
 
   /// Creates a clone of a [Request] object.
   @JS()
@@ -168,7 +168,7 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   /// Returns a promise that resolves with a [FormData] representation of
   /// the request body.
   @JS('formData')
-  external JSPromise<JSObject> _formData();
+  external JSPromise<FormData> _formData();
 
   /// Returns a promise that resolves with the result of parsing the request
   /// body as `JSON`.
@@ -183,17 +183,17 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   /// Returns a [Future] that resolves with an [ByteBuffer] representation of
   /// the response body.
   Future<ByteBuffer> arrayBuffer() =>
-    _arrayBuffer().toDart.then((value) => value as ByteBuffer);
+    _arrayBuffer().toDart.then((value) => value.toDart);
 
   /// Returns a [Future] that resolves with a [Blob] representation of
   /// the response body.
   Future<Blob> blob() =>
-    _blob().toDart.then((value) => value as Blob);
+    _blob().toDart;
 
   /// Returns a [Future] that resolves with a [FormData] representation of
   /// the response body.
   Future<FormData> formData() =>
-    _formData().toDart.then((value) => value as FormData);
+    _formData().toDart;
 
   /// Returns a [Future] that resolves with the result of parsing the response
   /// body as `JSON`.
@@ -203,5 +203,5 @@ extension type Request<AbortType extends JSAny>._(JSObject _) implements JSObjec
   /// Returns a promise that resolves with a text representation of
   /// the response body.
   Future<String> text() =>
-    _text().toDart as Future<String>;
+    _text().toDart.then((value) => value.toDart);
 }
