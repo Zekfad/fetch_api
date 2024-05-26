@@ -11,27 +11,24 @@ import 'readable_stream_default_reader.dart';
 /// 
 /// If the stream becomes closed, the object will be of the form
 /// `{ value: undefined, done: true }`.
-extension type ReadableStreamDefaultReaderChunk._(JSObject _) implements JSObject {
+extension type ReadableStreamDefaultReaderChunk<T extends JSAny>._(JSObject _) implements JSObject {
   factory ReadableStreamDefaultReaderChunk({
     required bool done,
     Uint8List? value,
   }) => ReadableStreamDefaultReaderChunk._new(
     done: done,
-    value: value as JSObject?,
+    value: value?.toJS,
   );
   
   @JS('')
   external factory ReadableStreamDefaultReaderChunk._new({
     required bool done,
-    JSObject? value,
+    JSUint8Array? value,
   });
 
   /// Chunk of data.
   @JS('value')
-  external JSObject? _value;
-
-  /// Chunk of data.
-  Uint8List? get value => _value as Uint8List?;
+  external T? value;
 
   /// Whether there are no more data will be available.
   @JS()

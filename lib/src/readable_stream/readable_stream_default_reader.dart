@@ -1,5 +1,4 @@
 import 'dart:js_interop';
-import 'dart:typed_data';
 
 import 'readable_stream.dart';
 import 'readable_stream_default_reader_chunk.dart';
@@ -27,7 +26,7 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
   external JSPromise<JSAny?> _cancel([ AbortType? reason, ]);
 
   @JS('read')
-  external JSPromise<ReadableStreamDefaultReaderChunk> _read();
+  external JSPromise<ReadableStreamDefaultReaderChunk<T>> _read();
 
   /// Releases the reader's lock on the stream.
   @JS()
@@ -42,7 +41,7 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
 
   /// Returns a [Future] providing access to the next chunk in the stream's
   /// internal queue.
-  Future<ReadableStreamDefaultReaderChunk> read() =>
+  Future<ReadableStreamDefaultReaderChunk<T>> read() =>
     _read().toDart;
 
   /// Returns a [Future] that fulfills when the stream closes,
@@ -53,9 +52,9 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
     _closed.toDart;
 
   /// Reads stream via [read] and returns chunks as soon as they are available.
-  Stream<Uint8List> readAsStream() async* {
+  Stream<T> readAsStream() async* {
     try {
-      ReadableStreamDefaultReaderChunk chunk;
+      ReadableStreamDefaultReaderChunk<T> chunk;
       do {
         chunk = await read();
         if (chunk.value case final value?)
