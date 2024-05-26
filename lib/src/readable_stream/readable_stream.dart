@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:js_interop';
 import 'dart:typed_data';
 
@@ -42,11 +43,17 @@ extension type ReadableStream<T extends JSAny, AbortType extends JSAny>._(JSObje
     JSObject? queuingStrategy,
   );
 
-  static ReadableStream<JSObject, AbortType> fromTypedDataStream<AbortType extends JSAny>(
-    Stream<TypedData> stream,
+  static ReadableStream<JSUint8Array, AbortType> fromTypedDataStream<T extends TypedData, AbortType extends JSAny>(
+    Stream<T> stream,
     [ JSObject? queuingStrategy, ]
   ) => ReadableStream(
-    ReadableStreamSource.fromStream(stream.cast()),
+    ReadableStreamSource.fromStream(
+      stream.transform(
+        StreamTransformer<T, JSUint8Array>.fromHandlers(
+          handleData: (data, sink) => sink.add(data.buffer.asUint8List().toJS),
+        ),
+      ),
+    ),
     queuingStrategy,
   );
 
