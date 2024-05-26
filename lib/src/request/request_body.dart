@@ -1,6 +1,5 @@
 import 'dart:js_interop';
 
-import 'dart:typed_data' show ByteBuffer, TypedData;
 import 'package:web/web.dart' show Blob, FormData, URLSearchParams;
 
 import '../readable_stream.dart' show ReadableStream;
@@ -8,45 +7,47 @@ import 'request.dart';
 
 
 /// [Request.body] union type.
-extension type RequestBody._(Object? _) {
+extension type RequestBody._(JSAny _) implements JSAny {
   /// Wrap [Blob] to [RequestBody] union.
   factory RequestBody.fromBlob(Blob blob) = _RequestBodyBlob;
   /// Wrap [FormData] to [RequestBody] union.
   factory RequestBody.fromFormData(FormData blob) = _RequestBodyFormData;
   /// Wrap [URLSearchParams] to [RequestBody] union.
   factory RequestBody.fromURLSearchParams(URLSearchParams blob) = _RequestBodyURLSearchParams;
-  /// Wrap [ByteBuffer] to [RequestBody] union.
-  factory RequestBody.fromByteBuffer(ByteBuffer blob) = _RequestBodyByteBuffer;
-  /// Wrap [TypedData] to [RequestBody] union.
-  factory RequestBody.fromTypedData(TypedData blob) = _RequestBodyTypedData;
+  /// Wrap [JSArrayBuffer] to [RequestBody] union.
+  factory RequestBody.fromJSArrayBuffer(JSArrayBuffer blob) = _RequestBodyJSArrayBuffer;
+  /// Wrap [JSTypedArray] to [RequestBody] union.
+  factory RequestBody.fromJSTypedArray(JSTypedArray blob) = _RequestBodyJSTypedArray;
   /// Wrap [ReadableStream] to [RequestBody] union.
-  factory RequestBody.fromReadableStream(ReadableStream blob) = _RequestBodyReadableStream;
-  /// Wrap [String] to [RequestBody] union.
-  factory RequestBody.fromString(String string) = _RequestBodyString;
+  factory RequestBody.fromReadableStream(ReadableStream<JSUint8Array, JSAny> blob) = _RequestBodyReadableStream;
+  /// Wrap [JSString] to [RequestBody] union.
+  factory RequestBody.fromJSString(JSString string) = _RequestBodyJSString;
 
   /// Try to create [RequestBody] from JS value.
   factory RequestBody.fromJSAny(JSAny _body) => switch(_body) {
     final Blob body => RequestBody.fromBlob(body),
+    // ignore: unreachable_switch_case
     final FormData body => RequestBody.fromFormData(body),
+    // ignore: unreachable_switch_case
     final URLSearchParams body => RequestBody.fromURLSearchParams(body),
-    // ignore: pattern_never_matches_value_type
-    final ByteBuffer body => RequestBody.fromByteBuffer(body),
-    // ignore: pattern_never_matches_value_type
-    final TypedData body => RequestBody.fromTypedData(body),
-    final ReadableStream body => RequestBody.fromReadableStream(body),
-    // ignore: pattern_never_matches_value_type
-    final String body => RequestBody.fromString(body),
+    // ignore: unreachable_switch_case
+    final JSArrayBuffer body => RequestBody.fromJSArrayBuffer(body),
+    // ignore: unreachable_switch_case
+    final JSTypedArray body => RequestBody.fromJSTypedArray(body),
+    // ignore: unreachable_switch_case
+    final ReadableStream<JSUint8Array, JSAny> body => RequestBody.fromReadableStream(body),
+    final JSString body => RequestBody.fromJSString(body),
     _ => throw StateError('Invalid state of body: unknown type: ${_body.runtimeType}'),
   };
 
   /// Convert to target JS value.
-  JSAny get toJS => this as JSAny;
+  JSAny get toJS => this;
 }
 
 extension type _RequestBodyBlob(Blob _) implements Blob, RequestBody {}
 extension type _RequestBodyFormData(FormData _) implements FormData, RequestBody {}
 extension type _RequestBodyURLSearchParams(URLSearchParams _) implements URLSearchParams, RequestBody {}
-extension type _RequestBodyByteBuffer(ByteBuffer _) implements ByteBuffer, RequestBody {}
-extension type _RequestBodyTypedData(TypedData _) implements TypedData, RequestBody {}
-extension type _RequestBodyReadableStream(ReadableStream _) implements ReadableStream, RequestBody {}
-extension type _RequestBodyString(String _) implements String, RequestBody {}
+extension type _RequestBodyJSArrayBuffer(JSArrayBuffer _) implements JSArrayBuffer, RequestBody {}
+extension type _RequestBodyJSTypedArray(JSTypedArray _) implements JSTypedArray, RequestBody {}
+extension type _RequestBodyReadableStream(ReadableStream<JSUint8Array, JSAny> _) implements ReadableStream, RequestBody {}
+extension type _RequestBodyJSString(JSString _) implements JSString, RequestBody {}
