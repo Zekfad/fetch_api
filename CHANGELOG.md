@@ -1,3 +1,28 @@
+## 2.2.0
+
+> Current usage is mostly limited to `package:fetch_client` and these changes
+> restores WASM support, therefore no major version bump was made.
+
+- **BREAKING** `ReadableStreamDefaultReader.readAsStream` is now generic as
+  in actual stream.
+- **BREAKING** `ReadableStream.fromTypedDataStream` now have 2 generic
+  parameters `T extends TypedData` and `AbortType extends JSAny` instead of
+  single `AbortType`.
+  Method itself now always returns `ReadableStream<JSUint8Array, AbortType>`,
+  this means that any `TypedData` is re-viewed to be `Uint8List`.
+- **BREAKING** `RequestBody` and `ResponseBody` now constructable only from
+  JS types:
+  - Removed `fromByteBuffer` instead added `fromJSArrayBuffer`.
+  - Removed `fromTypedData` instead added `fromJSTypedArray`.
+  - Removed `fromString` instead added `fromJSString`.
+  - `fromReadableStream` tightened type to `ReadableStream<JSUint8Array, JSAny>`
+    because fetch supports only streams of `Uint8Array`s.
+- **BREAKING** Fixed typo `RequestDestination.sharedworker` to
+  `RequestDestination.sharedWorker`.
+- Fixed `Response` and `Request` not working in WASM: this happened due to JS
+  runtime being more lax in type assertions, namely `JSString` as `String` is
+  ok in JS runtime, but fails in WASM.
+
 ## 2.1.0
 
 - Add `package:fetch_api/enums.dart` `fetch_api.enums` package with enumerations
