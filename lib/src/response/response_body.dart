@@ -25,18 +25,13 @@ extension type ResponseBody._(JSAny _) implements JSAny {
 
   /// Try to create [ResponseBody] from JS value.
   factory ResponseBody.fromJSAny(JSAny _body) => switch(_body) {
-    final Blob body => ResponseBody.fromBlob(body),
-    // ignore: unreachable_switch_case
-    final FormData body => ResponseBody.fromFormData(body),
-    // ignore: unreachable_switch_case
-    final URLSearchParams body => ResponseBody.fromURLSearchParams(body),
-    // ignore: unreachable_switch_case
-    final JSArrayBuffer body => ResponseBody.fromJSArrayBuffer(body),
-    // ignore: unreachable_switch_case
-    final JSTypedArray body => ResponseBody.fromJSTypedArray(body),
-    // ignore: unreachable_switch_case
-    final ReadableStream<JSUint8Array, JSAny> body => ResponseBody.fromReadableStream(body),
-    final JSString body => ResponseBody.fromJSString(body),
+    final Blob body when _body.isA<Blob>() => ResponseBody.fromBlob(body),
+    final FormData body when _body.isA<FormData>() => ResponseBody.fromFormData(body),
+    final URLSearchParams body when _body.isA<URLSearchParams>() => ResponseBody.fromURLSearchParams(body),
+    final JSArrayBuffer body when _body.isA<JSArrayBuffer>() => ResponseBody.fromJSArrayBuffer(body),
+    final JSTypedArray body when _body.isA<JSTypedArray>() => ResponseBody.fromJSTypedArray(body),
+    final ReadableStream<JSUint8Array, JSAny> body when _body.isA<ReadableStream<JSUint8Array, JSAny>>()  => ResponseBody.fromReadableStream(body),
+    final JSString body when _body.isA<JSString>() => ResponseBody.fromJSString(body),
     _ => throw StateError('Invalid state of body: unknown type: ${_body.runtimeType}'),
   };
 

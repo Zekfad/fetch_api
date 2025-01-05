@@ -10,11 +10,14 @@ extension type JSPromiseOr<T extends JSAny?>._(JSAny _) implements JSAny {
       final T value => value,
     } as JSPromiseOr<T>?;
   
+  /// A value of [T] if it's not a [JSPromise] otherwise a [Future] that either
+  /// completes with the result of the resolved [JSPromise] or propagates
+  /// the error that the [JSPromise] rejected with.
   FutureOr<T> get toDart => switch (this) {
-    final JSPromise<T> promise => promise.toDart as FutureOr<T>,
+    final JSPromise<T> promise when isA<JSPromise<T>>() => promise.toDart,
     // Always succeeds, because of JS type erasure.
     final T value => value,
-    _ => throw StateError('Invalid state op JSPromiseOr: unexpected type: $runtimeType'),
+    _ => throw StateError('Invalid state of JSPromiseOr: unexpected type: $runtimeType'),
   };
 }
 
