@@ -15,15 +15,15 @@ extension type ReadableStreamSourceCancelMethod<T extends JSAny, R extends JSAny
   factory ReadableStreamSourceCancelMethod(
     ReadableStreamSourceCancelMethodFunction<T, R, AbortType> fn,
   ) => (
-    // ignore: avoid_types_on_closure_parameters
     (AbortType? reason, ReadableStreamController<T> controller) =>
+      // Future is converted to JS Promise
       // ignore: discarded_futures
       fn(reason, controller).toJSPromiseOr
   ).toJS as ReadableStreamSourceCancelMethod<T, R, AbortType>;
 
   /// Execute this function.
   @JS('call')
-  external JSPromise<R>? call(
+  external JSPromiseOr<R>? call(
     JSObject context,
     AbortType reason,
     ReadableStreamController<T> controller,
