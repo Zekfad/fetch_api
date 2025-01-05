@@ -2,6 +2,7 @@
 /// (including across the network). It will seem familiar to anyone who has used
 /// `XMLHttpRequest`, but the new API provides a more powerful and flexible
 /// feature set.
+// ignore: unnecessary_library_name
 library fetch_api;
 
 export 'src/abort_controller.dart';

@@ -1,5 +1,6 @@
 /// This library combines enumerations used in Fetch API and is safe to use
 /// in non-JS environments.
+// ignore: unnecessary_library_name
 library fetch_api.enums;
 
 export 'src/request/request_cache.dart';
