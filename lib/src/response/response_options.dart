@@ -4,8 +4,9 @@ import '../headers.dart';
 
 
 /// An object containing any custom settings that you want to apply to the
-/// request.
+/// response.
 extension type ResponseOptions._(JSObject _) implements JSObject {
+  /// Create new response options.
   factory ResponseOptions({
     int status = 200,
     String statusText = '',

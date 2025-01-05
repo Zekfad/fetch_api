@@ -15,6 +15,7 @@ import 'readable_stream_source_controller_method.dart';
 /// 
 /// Note: Use [Uint8List] if you want compatibility with [Response] or [Request].
 extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(JSObject _) implements JSObject {
+  /// Create ReadableStreamSource from Dart handlers.
   factory ReadableStreamSource({
     ReadableStreamSourceControllerMethodFunction<T, JSAny?>? start,
     ReadableStreamSourceControllerMethodFunction<T, JSAny?>? pull,
@@ -47,7 +48,6 @@ extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(
             if (controller.desiredSize <= 0)
               subscription.pause();
           },
-          // ignore: avoid_types_on_closure_parameters
           onError: (Object error) {
             final object = switch (error) {
               String() => error.toJS,

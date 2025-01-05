@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:js_interop';
 
 
+/// Analog of [FutureOr] for JS interop.
 extension type JSPromiseOr<T extends JSAny?>._(JSAny _) implements JSAny {
+  /// Create [JSPromiseOr] from Dart [FutureOr].
   static JSPromiseOr<T>? fromDart<T extends JSAny?>(FutureOr<T> futureOr) =>
     switch (futureOr) {
       final Future<T> future => future.toJS,
@@ -21,7 +23,10 @@ extension type JSPromiseOr<T extends JSAny?>._(JSAny _) implements JSAny {
   };
 }
 
+/// Conversions from [FutureOr] with JS interop type to [JSPromiseOr].
 extension FutureOrToJSPromiseOr<T extends JSAny?> on FutureOr<T> {
+  /// Convert value to [JSPromiseOr] if its not `null`, `null` otherwise.
+  // Always nullable to support casting of null values
   JSPromiseOr<T>? get toJSPromiseOr =>
     switch (this) {
       final Future<T> future => future.toJS as JSPromiseOr<T>,

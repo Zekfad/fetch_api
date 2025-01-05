@@ -11,8 +11,9 @@ import 'iterator_symbol_method.dart';
 @JS('Symbol.iterator')
 external final JSSymbol _symbolIterator;
 
+/// JavaScript iterator.
 extension type Iterator<T extends JSAny>._(JSObject _) implements JSObject {
-  /// Create new [Iterator] from Dart handler.
+  /// Create new JavaScript [Iterator] from Dart handlers.
   factory Iterator({
     required IteratorResult<T> Function([T? value]) next,
     IteratorResult<T> Function([T? value])? returnValue,

@@ -12,6 +12,7 @@ import 'readable_stream_default_reader.dart';
 /// If the stream becomes closed, the object will be of the form
 /// `{ value: undefined, done: true }`.
 extension type ReadableStreamDefaultReaderChunk<T extends JSAny>._(JSObject _) implements JSObject {
+  /// Create readable stream default reader chunk from dart values.
   factory ReadableStreamDefaultReaderChunk({
     required bool done,
     Uint8List? value,

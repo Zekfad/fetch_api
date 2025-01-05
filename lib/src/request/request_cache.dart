@@ -1,3 +1,4 @@
+import '../request_options.dart' if (dart.library.io) '';
 import 'request.dart' if (dart.library.io) '';
 import 'request_mode.dart';
 import 'request_redirect.dart';
@@ -59,6 +60,7 @@ enum RequestCache {
   factory RequestCache.from(String value) =>
     values.firstWhere((element) => element.value == value);
 
+  /// Enum string value that can be used in raw [RequestInit].
   final String value;
 
   @override

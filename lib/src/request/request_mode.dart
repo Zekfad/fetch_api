@@ -1,3 +1,4 @@
+import '../request_options.dart' if (dart.library.io) '';
 import '../response/response.dart' if (dart.library.io) '';
 import 'request.dart' if (dart.library.io) '';
 
@@ -51,6 +52,7 @@ enum RequestMode {
   factory RequestMode.from(String mode) =>
     values.firstWhere((element) => element.mode == mode);
 
+  /// Enum string value that can be used in raw [RequestInit].
   final String mode;
 
   @override

@@ -1,3 +1,4 @@
+import '../request_options.dart' if (dart.library.io) '';
 import 'request.dart' if (dart.library.io) '';
 
 
@@ -13,6 +14,7 @@ enum RequestDuplex {
   factory RequestDuplex.from(String value) =>
     values.firstWhere((element) => element.value == value);
 
+  /// Enum string value that can be used in raw [RequestInit].
   final String value;
 
   @override

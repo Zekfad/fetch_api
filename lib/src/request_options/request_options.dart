@@ -8,6 +8,7 @@ import 'request_init.dart';
 
 /// An object containing `options` for [Request] constructor.
 extension type RequestOptions<AbortType extends JSAny>._(RequestInit<AbortType> _) implements RequestInit<AbortType> {
+  /// Create new request options.
   factory RequestOptions({
     String method = 'GET',
     Headers? headers,

@@ -9,6 +9,7 @@ import 'request_init.dart';
 /// An object containing any custom options that you want to apply to the fetch
 /// request.
 extension type FetchOptions<AbortType extends JSAny>._(RequestInit<AbortType> _) implements RequestInit<AbortType>  {
+  /// Create new fetch options.
   factory FetchOptions({
     String method = 'GET',
     Headers? headers,

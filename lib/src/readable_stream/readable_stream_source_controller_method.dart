@@ -15,13 +15,15 @@ extension type ReadableStreamSourceControllerMethod<T extends JSAny, R extends J
   factory ReadableStreamSourceControllerMethod(
     ReadableStreamSourceControllerMethodFunction<T, R> fn,
   ) => (
-    // ignore: avoid_types_on_closure_parameters, discarded_futures
-    (ReadableStreamController<T> controller) => fn(controller).toJSPromiseOr
+    (ReadableStreamController<T> controller) =>
+      // Future is converted to JS Promise
+      // ignore: discarded_futures
+      fn(controller).toJSPromiseOr
   ).toJS as ReadableStreamSourceControllerMethod<T, R>;
 
   /// Execute this function.
   @JS('call')
-  external JSPromise<R>? call(
+  external JSPromiseOr<R>? call(
     JSObject context,
     ReadableStreamController<T> controller,
   );

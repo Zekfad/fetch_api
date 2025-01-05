@@ -43,6 +43,7 @@ extension type ReadableStream<T extends JSAny, AbortType extends JSAny>._(JSObje
     JSObject? queuingStrategy,
   );
 
+  /// Convert [Stream] of [TypedData] to JS [ReadableStream].
   static ReadableStream<JSUint8Array, AbortType> fromTypedDataStream<T extends TypedData, AbortType extends JSAny>(
     Stream<T> stream,
     [ JSObject? queuingStrategy, ]
@@ -62,6 +63,7 @@ extension type ReadableStream<T extends JSAny, AbortType extends JSAny>._(JSObje
   external final bool locked;
 
   @JS('cancel')
+  // This function returns `undefined` which cannot be cast to dart `void`.
   // ignore: prefer_void_to_null
   external JSPromise<Null> _cancel([ AbortType? reason, ]);
 

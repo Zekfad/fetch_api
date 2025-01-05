@@ -11,6 +11,7 @@ import '../request.dart';
 
 /// An object containing `options` for [Request] constructor.
 extension type RequestInit<AbortType extends JSAny>._(JSObject _) implements JSObject {
+  /// Create new RequestInit object.
   factory RequestInit({
     required String method,
     required Headers? headers,
@@ -59,7 +60,6 @@ extension type RequestInit<AbortType extends JSAny>._(JSObject _) implements JSO
     String? integrity,
     bool? keepalive,
     AbortSignal? signal,
-    // ignore: unused_element
     String? duplex,
   });
 
