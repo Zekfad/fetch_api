@@ -1,3 +1,18 @@
+## 2.3.0
+
+> Requires Dart 3.6
+
+- Use proper JS type checks.
+- Add missing docs to public API.
+- Add missing `File` and `JSDataView` to `RequestBody` union.
+- Add missing `JSDataView` to `ResponseBody` union.
+- Update license years.
+- `ReadableStreamSourceCancelMethodFunction` returns `JSPromiseOr`, because this
+  method can return synchronously.
+- Fix `ReadableStreamSource.fromStream` cancel after error ([#6](https://github.com/Zekfad/fetch_api/issues/6))
+- Add `canStreamRequests` function to check if streaming is supported in
+  current browser.
+
 ## 2.2.0
 
 > Current usage is mostly limited to `package:fetch_client` and these changes
@@ -59,7 +74,7 @@
 
 ## 1.0.1
 
-- Downgraded `js` dependency to `^0.6.5` (#2).
+- Downgraded `js` dependency to `^0.6.5` ([#2](https://github.com/Zekfad/fetch_api/issues/2).
 
 ## 1.0.0
 
