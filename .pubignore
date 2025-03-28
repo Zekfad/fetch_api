@@ -3,6 +3,7 @@
 
 doc/
 web/
+web_wasm/
 test/
 analysis_options.yaml
 dart_test.yaml
