@@ -53,6 +53,7 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
 
   /// Reads stream via [read] and returns chunks as soon as they are available.
   Stream<T> readAsStream() async* {
+    var error = false;
     try {
       ReadableStreamDefaultReaderChunk<T> chunk;
       do {
@@ -61,11 +62,15 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
           yield value;
       } while (!chunk.done);
       return;
+    } catch(_) {
+      error = true;
+      rethrow;
     } finally {
       // Cancel stream after full read or early break.
       // If used with fetch response, this will cancel further response body
       // download on subscription cancellation and save bandwidth.
-      await cancel();
+      if (!error)
+        await cancel();
     }
   }
 }

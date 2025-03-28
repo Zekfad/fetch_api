@@ -38,6 +38,9 @@ extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(
   }
 
   /// Create [ReadableStreamSource] from Dart [Stream].
+  /// [stream] subscription is always canceled on first error, since adding
+  /// error to JS stream causes any future interactions with the associated
+  /// stream to error.
   factory ReadableStreamSource.fromStream(Stream<T> stream) {
     late final StreamSubscription<T> subscription;
     return ReadableStreamSource(
@@ -61,6 +64,7 @@ extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(
           onDone: () {
             controller.close();
           },
+          cancelOnError: true,
         );
       },
       pull: (controller) {
