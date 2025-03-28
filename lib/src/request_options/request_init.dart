@@ -1,7 +1,6 @@
 import 'dart:js_interop';
 
-import 'dart:typed_data' show ByteBuffer, TypedData;
-import 'package:web/web.dart' show Blob, FormData, URLSearchParams;
+import 'package:web/web.dart' show Blob, File, FormData, URLSearchParams;
 
 import '../abort_signal.dart';
 import '../headers.dart';
@@ -74,10 +73,9 @@ extension type RequestInit<AbortType extends JSAny>._(JSObject _) implements JSO
   @JS()
   external Headers headers;
 
-  /// Any body that you want to add to your request: this can be a [Blob],
-  /// an `ArrayBuffer` ([ByteBuffer]), a `TypedArray` ([TypedData]), a `DataView`,
-  /// a [FormData], a [URLSearchParams], [String] object or literal,
-  /// or a [ReadableStream] object.
+  /// Any body that you want to add to your request: this can be a [JSString],
+  /// an [JSArrayBuffer], a [Blob], a [JSDataView], a [File], a [FormData],
+  /// an [JSTypedArray], a [URLSearchParams] or a [ReadableStream].
   /// 
   /// This latest possibility is still experimental; check the compatibility
   /// information to verify you can use it.
