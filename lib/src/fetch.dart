@@ -1,5 +1,7 @@
 import 'dart:js_interop';
 
+import 'package:web/web.dart' show Document, URL, Window, WorkerGlobalScope;
+import 'request.dart';
 import 'request_options.dart';
 import 'response.dart';
 
@@ -20,21 +22,27 @@ external JSPromise<Response> _fetch(JSAny resource, [ RequestInit? options, ]);
 /// Instead, a then() handler must check the [Response.ok] and/or
 /// [Response.status] properties.
 /// 
-/// `WindowOrWorkerGlobalScope` is implemented by both `Window` and
-/// `WorkerGlobalScope`, which means that the `fetch()` method is available
+/// `WindowOrWorkerGlobalScope` is implemented by both [Window] and
+/// [WorkerGlobalScope], which means that the `fetch()` method is available
 /// in pretty much any context in which you might want to fetch resources.
 /// 
 /// The `fetch()` method is controlled by the `connect-src` directive of
 /// Content Security Policy rather than the directive of the resources
 /// it's retrieving.
+/// 
+/// [resource] defines the resource that you wish to fetch. This can either be
+/// a string or any other object with a stringifier —including a [URL] object
+/// — that provides the URL of the resource you want to fetch.
+/// The URL may be relative to the base URL, which is the [Document.baseURI]
+/// in a window context, or [WorkerGlobalScope.location] in a worker context.
+/// A [Request] object.
 Future<Response> fetch(Object resource, [ RequestInit? options, ]) =>
   _fetch(
     switch (resource) {
       String() => resource.toJS,
-      Uri() => resource.toString().toJS,
-      // Always matched due to JS type erasure
-      JSObject() => resource,
-      _ => throw StateError('Invalid resource type: ${resource.runtimeType}'),
+      // A string or any other object with a stringifier.
+      JSObject() when resource.isA<JSObject>() => resource,
+      Object() => resource.toString().toJS,
     },
     options,
   ).toDart;
