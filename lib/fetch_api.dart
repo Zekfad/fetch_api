@@ -7,6 +7,7 @@ library fetch_api;
 
 export 'src/abort_controller.dart';
 export 'src/abort_signal.dart';
+export 'src/can_stream_requests.dart';
 export 'src/fetch.dart';
 export 'src/headers.dart';
 export 'src/readable_stream.dart';
