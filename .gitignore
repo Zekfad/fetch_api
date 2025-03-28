@@ -7,3 +7,4 @@
 pubspec.lock
 
 web/
+web_wasm/
