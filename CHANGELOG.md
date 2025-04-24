@@ -16,7 +16,7 @@
   method can return synchronously.
 - Fix `ReadableStreamSource.fromStream` cancel after error ([#6](https://github.com/Zekfad/fetch_api/issues/6))
 - Add `canStreamRequests` function to check if streaming is supported in
-  current browser.
+  current browsers.
 
 ## 2.2.0
 
@@ -30,7 +30,7 @@
   single `AbortType`.
   Method itself now always returns `ReadableStream<JSUint8Array, AbortType>`,
   this means that any `TypedData` is re-viewed to be `Uint8List`.
-- **BREAKING** `RequestBody` and `ResponseBody` now constructable only from
+- **BREAKING** `RequestBody` and `ResponseBody` now constructible only from
   JS types:
   - Removed `fromByteBuffer` instead added `fromJSArrayBuffer`.
   - Removed `fromTypedData` instead added `fromJSTypedArray`.
@@ -42,13 +42,13 @@
 - Fixed `Response` and `Request` not working in WASM: this happened due to JS
   runtime being more lax in type assertions, namely `JSString` as `String` is
   ok in JS runtime, but fails in WASM.
-- `Response` and `Request` now uses precise type
+- `Response` and `Request` now use precise type
   `ReadableStream<JSUint8Array, JSAny>`
 
 ## 2.1.0
 
 - Add `package:fetch_api/enums.dart` `fetch_api.enums` package with enumerations
-  available to all platforms (including VM).
+  available for all platforms (including VM).
 - Use `DOMException` from `package:web` instead of alias to`JSObject`.
 - Enumerations use `if (dart.library.io) ''` for documentation-only imports,
   this allows to use them in non-JS environments.
@@ -59,7 +59,7 @@
 - Full rewrite to use `extension type`s - no more `InstanceMembers`.
 - Internal JS Iterators are now fully covered with generics.
 - JS Iterator is no longer exported via public API.
-- `Headers` uses `(String, String)` in entries instead of `List<String>`.
+- `Headers` now use `(String, String)` in entries instead of `List<String>`.
 - `FetchOptions` and `RequestOptions` are now inherited from `RequestInit`
   and interchangeable.
 - `ReadableStreamSource` `start`, `pull` and `cancel` are now only callable
@@ -89,7 +89,7 @@
 ## 1.0.0-dev.5
 
 - **BREAKING**: Renamed `RequestInit` to `FetchOptions`.
-  This is done to make emphasis, that `fetch` and `Request` have different
+  This is done to make emphatic, that `fetch` and `Request` have different
   (default) behaviors.
 - Added `Request`.
 - Added `RequestDuplex`. This adds support for request streaming in supported
@@ -108,7 +108,7 @@
   - Added `createRequestOptions`.
   - Added `createReadableStream`.
   - Added `createReadableStreamSourceFromStream`.
-- Fixed dev dependencies versions, to allow running on Dart 2.19.
+- Fixed dev dependency versions, to allow running on Dart 2.19.
 
 
 ## 1.0.0-dev.4
