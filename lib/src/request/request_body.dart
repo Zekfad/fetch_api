@@ -39,17 +39,17 @@ extension type const RequestBody._(JSAny _) implements JSAny {
   const factory RequestBody.fromReadableStream(ReadableStream<JSUint8Array, JSAny> body) = _RequestBodyReadableStream;
 
   /// Try to create [RequestBody] from JS value.
-  factory RequestBody.fromJSAny(JSAny _body) => switch(_body) {
-    final JSString body when _body.isA<JSString>() => RequestBody.fromJSString(body),
-    final JSArrayBuffer body when _body.isA<JSArrayBuffer>() => RequestBody.fromJSArrayBuffer(body),
-    final Blob body when _body.isA<Blob>() => RequestBody.fromBlob(body),
-    final JSDataView body when _body.isA<JSDataView>() => RequestBody.fromJSDataView(body),
-    final File body when _body.isA<File>() => RequestBody.fromFile(body),
-    final FormData body when _body.isA<FormData>() => RequestBody.fromFormData(body),
-    final JSTypedArray body when _body.isA<JSTypedArray>() => RequestBody.fromJSTypedArray(body),
-    final URLSearchParams body when _body.isA<URLSearchParams>() => RequestBody.fromURLSearchParams(body),
-    final ReadableStream<JSUint8Array, JSAny> body when _body.isA<ReadableStream<JSUint8Array, JSAny>>()  => RequestBody.fromReadableStream(body),
-    _ => throw JSTypeError('${_body.runtimeType} is not a valid RequestBody'),
+  factory RequestBody.fromJSAny(JSAny body) => switch(body) {
+    final JSString body when body.isA<JSString>() => RequestBody.fromJSString(body),
+    final JSArrayBuffer body when body.isA<JSArrayBuffer>() => RequestBody.fromJSArrayBuffer(body),
+    final Blob body when body.isA<Blob>() => RequestBody.fromBlob(body),
+    final JSDataView body when body.isA<JSDataView>() => RequestBody.fromJSDataView(body),
+    final File body when body.isA<File>() => RequestBody.fromFile(body),
+    final FormData body when body.isA<FormData>() => RequestBody.fromFormData(body),
+    final JSTypedArray body when body.isA<JSTypedArray>() => RequestBody.fromJSTypedArray(body),
+    final URLSearchParams body when body.isA<URLSearchParams>() => RequestBody.fromURLSearchParams(body),
+    final ReadableStream<JSUint8Array, JSAny> body when body.isA<ReadableStream<JSUint8Array, JSAny>>()  => RequestBody.fromReadableStream(body),
+    _ => throw JSTypeError('${body.runtimeType} is not a valid RequestBody'),
   };
 
   /// Convert to target JS value.

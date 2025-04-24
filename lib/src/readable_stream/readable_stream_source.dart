@@ -24,16 +24,21 @@ extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(
     int? autoAllocateChunkSize,
   }) {
     final object = JSObject() as ReadableStreamSource<T, AbortType>;
-    if (start != null)
+    if (start != null) {
       object.start = ReadableStreamSourceControllerMethod(start);
-    if (pull != null)
+    }
+    if (pull != null) {
       object.pull = ReadableStreamSourceControllerMethod(pull);
-    if (cancel != null)
+    }
+    if (cancel != null) {
       object.cancel = ReadableStreamSourceCancelMethod<T, JSAny?, AbortType>(cancel);
-    if (type != null)
+    }
+    if (type != null) {
       object.type = type;
-    if (autoAllocateChunkSize != null)
+    }
+    if (autoAllocateChunkSize != null) {
       object.autoAllocateChunkSize = autoAllocateChunkSize;
+    }
     return object;
   }
 
@@ -48,8 +53,9 @@ extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(
         subscription = stream.listen(
           (event) {
             controller.enqueue(event);
-            if (controller.desiredSize <= 0)
+            if (controller.desiredSize <= 0) {
               subscription.pause();
+            }
           },
           onError: (Object error) {
             final object = switch (error) {
@@ -66,12 +72,15 @@ extension type ReadableStreamSource<T extends JSAny, AbortType extends JSAny>._(
           },
           cancelOnError: true,
         );
+        return;
       },
       pull: (controller) {
         subscription.resume();
+        return;
       },
       cancel: (reason, controller) async {
         await subscription.cancel();
+        return;
       },
     );
   }

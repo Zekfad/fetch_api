@@ -20,10 +20,12 @@ extension type Iterator<T extends JSAny>._(JSObject _) implements JSObject {
     IteratorResult<T> Function([JSAny? error])? throwValue,
   }) {
     final object = Iterator._new$1(next: IteratorMethod(next));
-    if (returnValue != null)
+    if (returnValue != null) {
       object._return = IteratorMethod(returnValue);
-    if (throwValue != null)
+    }
+    if (throwValue != null) {
       object._throw = IteratorMethod(throwValue);
+    }
     object._.setProperty(
       _symbolIterator,
       IteratorSymbolMethod(() => object),
@@ -61,10 +63,11 @@ extension type Iterator<T extends JSAny>._(JSObject _) implements JSObject {
   /// and can perform any cleanup actions.
   IteratorResult<T> Function([T? value])? get returnValue => _return?.bind(_).call;
   set returnValue(IteratorResult<T> Function([T? value])? fn) {
-    if (fn == null)
+    if (fn == null) {
       _.delete('return'.toJS);
-    else
+    } else {
       _return = IteratorMethod<T, T>(fn);
+    }
   }
 
   /// A function that accepts zero or one argument and returns an object
@@ -74,10 +77,11 @@ extension type Iterator<T extends JSAny>._(JSObject _) implements JSObject {
   /// condition, and exception is typically an `Error` instance.
   IteratorResult<T> Function([JSAny? value])? get throwValue => _throw?.bind(_).call;
   set throwValue(IteratorResult<T> Function([JSAny? value])? fn) {
-    if (fn == null)
+    if (fn == null) {
       _.delete('throw'.toJS);
-    else
+    } else {
       _throw = IteratorMethod<T, JSAny>(fn);
+    }
   }
 
   @JS('next')

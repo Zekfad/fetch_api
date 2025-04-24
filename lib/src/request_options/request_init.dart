@@ -40,8 +40,9 @@ extension type RequestInit<AbortType extends JSAny>._(JSObject _) implements JSO
       keepalive: keepalive,
       signal: signal,
     );
-    if (duplex != null)
+    if (duplex != null) {
       options.requestDuplex = duplex;
+    }
     return options;
   }
 

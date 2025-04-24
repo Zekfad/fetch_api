@@ -22,8 +22,8 @@ This package provides WASM-ready Dart bindings to JavaScript
 ## Some notes about `fetch` and `Request`
 
 `fetch` and `Request` have same options but different semantics, e.g. `fetch`'s
-default mode is `no-cors` while `Request`'s `cors`. Therefore options objects
-for `fetch` function and `Request` constructor made as different extension
+default mode is `no-cors` while `Request`'s `cors`. Therefore, options objects
+of `fetch` function and `Request` constructor made as different extension
 types, although they are interchangeable and both inherited from `RequestInit`.
 
-For more info about that read [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+For more info about that, read [MDN docs](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).

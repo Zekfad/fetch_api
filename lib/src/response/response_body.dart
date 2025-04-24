@@ -37,16 +37,16 @@ extension type const ResponseBody._(JSAny _) implements JSAny {
   const factory ResponseBody.fromJSString(JSString body) = _ResponseBodyJSString;
 
   /// Try to create [ResponseBody] from JS value.
-  factory ResponseBody.fromJSAny(JSAny _body) => switch(_body) {
-    final Blob body when _body.isA<Blob>() => ResponseBody.fromBlob(body),
-    final JSTypedArray body when _body.isA<JSTypedArray>() => ResponseBody.fromJSTypedArray(body),
-    final JSArrayBuffer body when _body.isA<JSArrayBuffer>() => ResponseBody.fromJSArrayBuffer(body),
-    final JSDataView body when _body.isA<JSDataView>() => ResponseBody.fromJSDataView(body),
-    final FormData body when _body.isA<FormData>() => ResponseBody.fromFormData(body),
-    final ReadableStream<JSUint8Array, JSAny> body when _body.isA<ReadableStream<JSUint8Array, JSAny>>()  => ResponseBody.fromReadableStream(body),
-    final URLSearchParams body when _body.isA<URLSearchParams>() => ResponseBody.fromURLSearchParams(body),
-    final JSString body when _body.isA<JSString>() => ResponseBody.fromJSString(body),
-    _ => throw JSTypeError('${_body.runtimeType} is not a valid ResponseBody'),
+  factory ResponseBody.fromJSAny(JSAny body) => switch(body) {
+    final Blob body when body.isA<Blob>() => ResponseBody.fromBlob(body),
+    final JSTypedArray body when body.isA<JSTypedArray>() => ResponseBody.fromJSTypedArray(body),
+    final JSArrayBuffer body when body.isA<JSArrayBuffer>() => ResponseBody.fromJSArrayBuffer(body),
+    final JSDataView body when body.isA<JSDataView>() => ResponseBody.fromJSDataView(body),
+    final FormData body when body.isA<FormData>() => ResponseBody.fromFormData(body),
+    final ReadableStream<JSUint8Array, JSAny> body when body.isA<ReadableStream<JSUint8Array, JSAny>>()  => ResponseBody.fromReadableStream(body),
+    final URLSearchParams body when body.isA<URLSearchParams>() => ResponseBody.fromURLSearchParams(body),
+    final JSString body when body.isA<JSString>() => ResponseBody.fromJSString(body),
+    _ => throw JSTypeError('${body.runtimeType} is not a valid ResponseBody'),
   };
 
   /// Convert to target JS value.

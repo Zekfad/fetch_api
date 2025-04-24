@@ -20,8 +20,9 @@ extension CoreIteratorToJSIterator<T extends JSAny> on core.Iterator<T> {
   js.Iterator get toJS =>
     js.Iterator<T>(
       next: ([value]) {
-        if (!moveNext())
+        if (!moveNext()) {
           return js.IteratorResult(done: true);
+        }
         return js.IteratorResult(value: current);
       },
     );

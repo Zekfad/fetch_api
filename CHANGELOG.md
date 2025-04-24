@@ -1,3 +1,8 @@
+## 2.3.1
+
+- Fix lint errors.
+- Use `package:zekfad_lints/lib.yaml` which aligns with core lints.
+
 ## 2.3.0
 
 > Requires Dart 3.6

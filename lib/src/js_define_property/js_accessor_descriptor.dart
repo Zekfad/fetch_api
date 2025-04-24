@@ -19,10 +19,12 @@ extension type JSAccessorDescriptor<T extends JSObject, R extends JSAny?>._(JSPr
       configurable: configurable,
       enumerable: enumerable,
     );
-    if (get != null)
+    if (get != null) {
       descriptor.get = JSAccessorDescriptorGetterMethod<T, R>(get);
-    if (set != null)
+    }
+    if (set != null) {
       descriptor.set = JSAccessorDescriptorSetterMethod<T>(set);
+    }
     return descriptor;
   }
 

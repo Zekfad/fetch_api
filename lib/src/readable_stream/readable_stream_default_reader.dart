@@ -58,8 +58,9 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
       ReadableStreamDefaultReaderChunk<T> chunk;
       do {
         chunk = await read();
-        if (chunk.value case final value?)
+        if (chunk.value case final value?) {
           yield value;
+        }
       } while (!chunk.done);
       return;
     } catch(_) {
@@ -69,8 +70,9 @@ extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JS
       // Cancel stream after full read or early break.
       // If used with fetch response, this will cancel further response body
       // download on subscription cancellation and save bandwidth.
-      if (!error)
+      if (!error) {
         await cancel();
+      }
     }
   }
 }
