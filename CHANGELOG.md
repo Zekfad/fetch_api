@@ -1,3 +1,7 @@
+## 2.3.2
+
+- Fix compatibility with Dart 3.14.
+
 ## 2.3.1
 
 - Fix lint errors.
