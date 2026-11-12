@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 import 'dart:typed_data';
 
 import '../response.dart';
@@ -7,9 +8,14 @@ import 'readable_stream_default_reader.dart';
 import 'readable_stream_source.dart';
 
 
+/// Workaround inability to remove JS name prefix.
+@JS('ReadableStream')
+external final JSFunction _readableStreamNew;
+
 /// The [ReadableStream] interface of the Streams API represents a readable
 /// stream of byte data. The Fetch API offers a concrete instance of
 /// a [ReadableStream] through the body property of a [Response] object.
+@JS()
 extension type ReadableStream<T extends JSAny, AbortType extends JSAny>._(JSObject _) implements JSObject {
   /// Creates and returns a readable stream object from the given handlers.
   factory ReadableStream([
@@ -18,32 +24,14 @@ extension type ReadableStream<T extends JSAny, AbortType extends JSAny>._(JSObje
   ]) {
     if (underlyingSource != null) {
       if (queuingStrategy != null) {
-        return ReadableStream._new$2(underlyingSource, queuingStrategy);
+        return _readableStreamNew.callAsConstructor(underlyingSource, queuingStrategy);
       } else {
-        return ReadableStream._new$1(underlyingSource);
+        return _readableStreamNew.callAsConstructor(underlyingSource);
       }
     } else {
-      return ReadableStream._new$0();
+      return _readableStreamNew.callAsConstructor();
     }
   }
-
-  /// Creates and returns a readable stream object.
-  @JS('ReadableStream')
-  external factory ReadableStream._new$0();
-
-  /// Creates and returns a readable stream object from given handlers.
-  @JS('ReadableStream')
-  external factory ReadableStream._new$1(
-    ReadableStreamSource<T, AbortType>? underlyingSource,
-  );
-
-  /// Creates and returns a readable stream object from given handlers and
-  /// queuing strategy.
-  @JS('ReadableStream')
-  external factory ReadableStream._new$2(
-    ReadableStreamSource<T, AbortType>? underlyingSource,
-    JSObject? queuingStrategy,
-  );
 
   /// Convert [Stream] of [TypedData] to JS [ReadableStream].
   static ReadableStream<JSUint8Array, AbortType> fromTypedDataStream<T extends TypedData, AbortType extends JSAny>(

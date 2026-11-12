@@ -1,4 +1,5 @@
 import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
 import 'dart:typed_data' show ByteBuffer;
 import 'package:web/web.dart' show Blob, FormData;
@@ -9,10 +10,15 @@ import 'response_body.dart';
 import 'response_options.dart';
 import 'response_type.dart';
 
-/// Workaround for not being able to have two different constructors with
+
+/// Workaround inability to remove JS name prefix.
+@JS('Response')
+external final JSFunction _responseNew;
+
+/// Workaround not being able to have two different constructors with
 /// same argument types.
 @JS('Response.json')
-external final JSFunction _jsonConstructor;
+external final JSFunction _responseJson;
 
 /// The [Response] interface of the Fetch API represents the response
 /// to a request.
@@ -25,29 +31,31 @@ external final JSFunction _jsonConstructor;
 extension type Response._(JSObject _) implements JSObject {
   /// Creates a new [Response] object.
   factory Response([ ResponseBody? body, ResponseOptions? options, ]) =>
-    Response._new(body?.toJS, options);
+    _responseNew.callAsConstructor<Response>(
+      body,
+      options,
+    );
 
   /// Creates a new response with a different URL.
   factory Response.redirect(String url, [ int status = 302, ]) =>
     Response._redirect(url, status);
 
-  /// Returns a new [Response] object associated with a network error.
-  @JS()
-  external factory Response.error();
-
   /// Returns a new [Response] object for returning the provided JSON encoded
   /// data.
   factory Response.json(Map<String, dynamic> data, [ ResponseOptions? options, ]) =>
-    _jsonConstructor.callAsFunction(
-      _jsonConstructor, data.jsify()! as JSObject,
+    _responseJson.callAsFunction(
+      _responseJson,
+      data.jsify()! as JSObject,
       options,
     )! as Response;
 
-  @JS('')
-  external factory Response._new([ JSAny? body, ResponseOptions? options, ]); 
+  /// Returns a new [Response] object associated with a network error.
+  @JS()
+  external static Response error();
 
   @JS('redirect')
-  external factory Response._redirect(String url, int status);
+  external static Response _redirect(String url, int status);
+
 
   /// A [ReadableStream] of the body contents.
   @JS()

@@ -16,8 +16,6 @@ extension type ReadableStreamSourceControllerMethod<T extends JSAny, R extends J
     ReadableStreamSourceControllerMethodFunction<T, R> fn,
   ) => (
     (ReadableStreamController<T> controller) =>
-      // Future is converted to JS Promise
-      // ignore: discarded_futures
       fn(controller).toJSPromiseOr
   ).toJS as ReadableStreamSourceControllerMethod<T, R>;
 

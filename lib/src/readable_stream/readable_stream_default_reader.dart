@@ -10,9 +10,9 @@ import 'readable_stream_default_reader_chunk.dart';
 /// 
 /// A [ReadableStreamDefaultReader] can be used to read from a [ReadableStream]
 /// that has an underlying source of any type.
+@JS()
 extension type ReadableStreamDefaultReader<T extends JSAny, AbortType extends JSAny>._(JSObject _) implements JSObject {
   /// Creates and returns a [ReadableStreamDefaultReader] object instance.
-  @JS()
   external factory ReadableStreamDefaultReader(ReadableStream<T, AbortType> stream);
 
   /// Returns a `Promise` that fulfills when the stream closes,

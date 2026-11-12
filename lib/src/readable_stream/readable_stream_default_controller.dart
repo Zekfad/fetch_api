@@ -8,5 +8,6 @@ import 'readable_stream_controller.dart';
 /// and internal queue.
 /// 
 /// Default controllers are for streams that are not byte streams.
+@JS()
 extension type ReadableStreamDefaultController<T extends JSAny>._(JSObject _) implements JSObject, ReadableStreamController {
 }

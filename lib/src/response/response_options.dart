@@ -17,7 +17,6 @@ extension type ResponseOptions._(JSObject _) implements JSObject {
     headers: headers,
   );
 
-  @JS()
   external factory ResponseOptions._new({
     int status,
     String statusText,

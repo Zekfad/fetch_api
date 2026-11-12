@@ -21,7 +21,6 @@ extension type ReadableStreamDefaultReaderChunk<T extends JSAny>._(JSObject _) i
     value: value?.toJS,
   );
   
-  @JS('')
   external factory ReadableStreamDefaultReaderChunk._new({
     required bool done,
     JSUint8Array? value,

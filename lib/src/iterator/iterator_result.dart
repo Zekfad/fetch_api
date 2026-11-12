@@ -27,13 +27,11 @@ extension type IteratorResult<T extends JSAny>._(JSObject _) implements JSObject
     );
 
   /// Creates object that assigns [done] and leaves [value] `undefined`.
-  @JS('')
   external factory IteratorResult._new$1({
     bool? done,
   });
 
   /// Creates object that assigns both [done] and [value].
-  @JS('')
   external factory IteratorResult._new$2({
     bool? done,
     T value,

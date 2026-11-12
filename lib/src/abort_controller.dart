@@ -11,7 +11,6 @@ import 'abort_signal.dart';
 @JS()
 extension type AbortController<T extends JSAny>._(JSObject _) implements JSObject {
   /// Creates a new [AbortController] object instance.
-  @JS('AbortController')
   external factory AbortController();
 
   /// Returns an [AbortSignal] object instance, which can be used
@@ -23,5 +22,5 @@ extension type AbortController<T extends JSAny>._(JSObject _) implements JSObjec
   /// This is able to abort fetch requests, consumption of any response bodies,
   /// and streams.
   @JS()
-  external void abort([T? reason]);
+  external void abort([ T? reason, ]);
 }

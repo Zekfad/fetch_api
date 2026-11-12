@@ -46,7 +46,6 @@ extension type RequestInit<AbortType extends JSAny>._(JSObject _) implements JSO
     return options;
   }
 
-  @JS('')
   external factory RequestInit._new({
     String? method,
     Headers? headers,
@@ -146,38 +145,38 @@ extension type RequestInit<AbortType extends JSAny>._(JSObject _) implements JSO
 
   /// Controls the mode you want to use for the request.
   RequestMode get requestMode =>
-    RequestMode.from(this.mode);
+    RequestMode.from(mode);
   set requestMode(RequestMode requestMode) =>
-    this.mode = requestMode.toString();
+    mode = requestMode.toString();
 
   /// Controls what browsers do with credentials (cookies, HTTP authentication
   /// entries, and TLS client certificates).
   RequestCredentials get requestCredentials =>
-    RequestCredentials.from(this.credentials);
+    RequestCredentials.from(credentials);
   set requestCredentials(RequestCredentials requestCredentials) =>
-    this.credentials = requestCredentials.toString();
+    credentials = requestCredentials.toString();
 
   /// Controls how the request will interact with the browser's HTTP cache.
   RequestCache get requestCache =>
-    RequestCache.from(this.cache);
+    RequestCache.from(cache);
   set requestCache(RequestCache requestCache) =>
-    this.cache = requestCache.toString();
+    cache = requestCache.toString();
 
   /// Controls how to handle a redirect response.
   RequestRedirect get requestRedirect =>
-    RequestRedirect.from(this.redirect);
+    RequestRedirect.from(redirect);
   set requestRedirect(RequestRedirect requestRedirect) =>
-    this.redirect = requestRedirect.toString();
+    redirect = requestRedirect.toString();
 
   /// Specifies the referrer policy to use for the request.
   RequestReferrerPolicy get requestReferrerPolicy =>
-    RequestReferrerPolicy.from(this.referrerPolicy);
+    RequestReferrerPolicy.from(referrerPolicy);
   set requestReferrerPolicy(RequestReferrerPolicy requestReferrerPolicy) =>
-    this.referrerPolicy = requestReferrerPolicy.toString();
+    referrerPolicy = requestReferrerPolicy.toString();
 
   /// Specifies the request duplex mode.
   RequestDuplex? get requestDuplex =>
-    this.duplex == null ? null : RequestDuplex.from(this.duplex!);
+    duplex == null ? null : RequestDuplex.from(duplex!);
   set requestDuplex(RequestDuplex? requestDuplex) =>
-    this.duplex = requestDuplex?.toString();
+    duplex = requestDuplex?.toString();
 }

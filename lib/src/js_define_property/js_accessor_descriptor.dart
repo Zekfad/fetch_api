@@ -28,7 +28,6 @@ extension type JSAccessorDescriptor<T extends JSObject, R extends JSAny?>._(JSPr
     return descriptor;
   }
 
-  @JS('')
   external factory JSAccessorDescriptor._new({
     bool configurable,
     bool enumerable,

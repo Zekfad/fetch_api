@@ -20,7 +20,6 @@ extension type const JSDataDescriptor<T extends JSObject, R extends JSAny?>._(JS
     value: value,
   );
 
-  @JS('')
   external factory JSDataDescriptor._new({
     bool configurable,
     bool enumerable,
